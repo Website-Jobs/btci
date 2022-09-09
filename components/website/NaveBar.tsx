@@ -12,7 +12,7 @@ function NaveBar() {
         <div className="main-nav">
           <div className="container">
             <nav className="navbar navbar-expand-md navbar-light">
-              <Link className="navbar-brand" href="index.html">
+              <Link className="navbar-brand" href="/">
                 <img src="assets/img/logo.png" alt="Logo" />
               </Link>
               <div
