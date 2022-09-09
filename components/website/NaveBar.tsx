@@ -6,14 +6,14 @@ function NaveBar() {
       <div className="navbar-area sticky-top">
         <div className="mobile-nav">
           <Link href="/" className="logo">
-            <img src="/assets/img/logo-two.png" alt="Logo" />
+            <img src="/assets/img/logo-two.png" alt="Bitcoin Investors" />
           </Link>
         </div>
         <div className="main-nav">
           <div className="container">
             <nav className="navbar navbar-expand-md navbar-light">
               <Link className="navbar-brand" href="/">
-                <img src="assets/img/logo.png" alt="Logo" />
+                <img src="/assets/img/logo.png" alt="Bitcoin Investors" />
               </Link>
               <div
                 className="collapse navbar-collapse mean-menu"

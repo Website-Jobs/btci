@@ -24,9 +24,9 @@ function HeaderArea() {
               <div className="right">
                 <ul>
                   <li>
-                    <a href="#">
+                    <Link href="#">
                       <i className="bx bxl-facebook text-white" />
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <Link href="#">

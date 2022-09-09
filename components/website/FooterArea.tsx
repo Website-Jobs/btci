@@ -10,7 +10,7 @@ function FooterArea() {
               <div className="footer-item">
                 <div className="footer-logo">
                   <Link className="logo" href="/">
-                    <img src="assets/img/logo-two.png" alt="Logo" />
+                    <img src="/assets/img/logo-two.png" alt="Logo" />
                   </Link>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
