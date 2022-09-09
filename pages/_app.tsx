@@ -1,5 +1,3 @@
-import "../styles/globals.css";
-
 import "../public/assets/css/bootstrap.min.css";
 import "../public/assets/css/meanmenu.css";
 import "../public/assets/css/boxicons.min.css";
@@ -12,6 +10,8 @@ import "../public/assets/css/nice-select.min.css";
 import "../public/assets/css/magnific-popup.min.css";
 import "../public/assets/css/style.css";
 import "../public/assets/css/responsive.css";
+
+import "../styles/globals.css";
 
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
