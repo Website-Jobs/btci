@@ -4,7 +4,6 @@ import "../public/assets/css/boxicons.min.css";
 import "../public/assets/css/owl.carousel.min.css";
 import "../public/assets/css/owl.theme.default.min.css";
 import "../public/assets/css/animate.min.css";
-// import "../public/assets/css/flaticon.css";
 import "../public/assets/css/odometer.min.css";
 import "../public/assets/css/nice-select.min.css";
 import "../public/assets/css/magnific-popup.min.css";
