@@ -20,7 +20,7 @@ function PageLayout({ children }: Props) {
         <script src="assets/js/form-validator.min.js" type="text/javascript" />
 
         <script
-          src="/assets/js/assets/js/contact-form-script.js"
+          src="/assets/js/contact-form-script.js"
           type="text/javascript"
         />
         <script
