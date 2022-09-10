@@ -17,7 +17,7 @@ function PageLayout({ children }: Props) {
         <script src="/assets/js/popper.min.js" type="text/javascript" />
         <script src="/assets/js/bootstrap.min.js" type="text/javascript" />
 
-        <script src="assets/js/form-validator.min.js" type="text/javascript" />
+        <script src="/assets/js/form-validator.min.js" type="text/javascript" />
 
         <script
           src="/assets/js/contact-form-script.js"
