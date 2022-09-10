@@ -4,7 +4,6 @@ import HeaderArea from "./website/HeaderArea";
 import FooterArea from "./website/FooterArea";
 import CopyRight from "./website/CopyRight";
 import NavigationBar from "./website/NavigationBar";
-
 import { Props } from "../interfaces";
 
 function PageLayout({ children }: Props) {

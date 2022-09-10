@@ -58,7 +58,7 @@ function NavigationBar() {
                 </ul>
                 <div className="side-nav">
                   <Link href="#">
-                    <a className="consultant-btn">Free Consultant</a>
+                    <a className="consultant-btn">Register / Login</a>
                   </Link>
                 </div>
               </div>
