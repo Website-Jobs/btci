@@ -1,11 +1,11 @@
 import React, { ReactNode, useEffect } from "react";
 import Head from "next/head";
+import NavigationBar from "./website/NavigationBar";
 import HeaderArea from "./website/HeaderArea";
 import FooterArea from "./website/FooterArea";
-import CopyRight from "./website/CopyRight";
-import NavigationBar from "./website/NavigationBar";
 import Script from "next/script";
 import { Props } from "../interfaces";
+import CopyRight from "./website/CopyRight";
 
 function PageLayout({ children }: Props) {
   return (
