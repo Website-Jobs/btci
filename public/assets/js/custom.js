@@ -1,12 +1,6 @@
 jQuery(function ($) {
 	'use strict';
 
-	$(function () {
-		alert(0)
-	});
-
-
-
 	// Navbar JS
 	$(window).on('scroll', function () {
 		if ($(this).scrollTop() > 50) {

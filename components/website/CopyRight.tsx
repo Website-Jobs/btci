@@ -7,7 +7,7 @@ function CopyRight() {
         <div className="container">
           <div className="copyright-item">
             <p>
-              Copyright ©2021 Finon. Designed By{"{"}" TechNumbers Inc. "{"}"}
+              Copyright ©2021 Finon. Designed By TechNumbers Inc.
               <Link href="https://envytheme.com/" target="_blank">
                 EnvyTheme
               </Link>

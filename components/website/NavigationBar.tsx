@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-function NaveBar() {
+function NavigationBar() {
   return (
     <>
       <div className="navbar-area sticky-top">
@@ -70,4 +70,4 @@ function NaveBar() {
   );
 }
 
-export default NaveBar;
+export default NavigationBar;

@@ -1,69 +1,53 @@
 import React, { ReactNode, useEffect } from "react";
-import Script from "next/script";
 import Head from "next/head";
-// import layoutCss from "../styles/PageLayout.module.css";
 import HeaderArea from "./website/HeaderArea";
 import FooterArea from "./website/FooterArea";
-import NaveBar from "./website/NaveBar";
+import CopyRight from "./website/CopyRight";
+import NavigationBar from "./website/NavigationBar";
 
-interface Props {
-  children?: ReactNode;
-}
+import { Props } from "../interfaces";
 
 function PageLayout({ children }: Props) {
-  // || \\
-  useEffect(() => {
-    <Script src="/assets/js/jquery-3.5.1.min.js" strategy="lazyOnload" />;
-    // <Script
-    //   src="../public/assets/js/popper.min.js"
-    //   strategy="afterInteractive"
-    // />;
-    // <Script
-    //   src="../public/assets/js/bootstrap.min.js"
-    //   strategy="afterInteractive"
-    // />;
-    // <Script
-    //   src="../public/assets/js/assets/js/contact-form-script.js"
-    //   strategy="afterInteractive"
-    // />;
-    // <Script
-    //   src="../public/assets/js/jquery.ajaxchimp.min.js"
-    //   strategy="afterInteractive"
-    // />;
-    // <Script
-    //   src="../public/assets/js/owl.carousel.min.js"
-    //   strategy="afterInteractive"
-    // />;
-    // <Script src="../public/assets/js/wow.min.js" strategy="afterInteractive" />;
-    // <Script
-    //   src="../public/assets/js/odometer.min.js"
-    //   strategy="afterInteractive"
-    // />;
-    // <Script
-    //   src="../public/assets/js/jquery.appear.min.js"
-    //   strategy="afterInteractive"
-    // />;
-    // <Script
-    //   src="../public/assets/js/jquery.nice-select.min.js"
-    //   strategy="afterInteractive"
-    // />;
-    // <Script
-    //   src="../public/assets/js/jquery.magnific-popup.min.js"
-    //   strategy="afterInteractive"
-    // />;
-    // <Script src="../public/assets/js/custom.js" strategy="afterInteractive" />;
-  }, []);
-  // || \\
   return (
     <>
       <Head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <script src="/assets/js/jquery-3.5.1.min.js" type="text/javascript" />
+        <script src="/assets/js/popper.min.js" type="text/javascript" />
+        <script src="/assets/js/bootstrap.min.js" type="text/javascript" />
+
+        <script src="assets/js/form-validator.min.js" type="text/javascript" />
+
+        <script
+          src="/assets/js/assets/js/contact-form-script.js"
+          type="text/javascript"
+        />
+        <script
+          src="/assets/js/jquery.ajaxchimp.min.js"
+          type="text/javascript"
+        />
+        <script src="/assets/js/jquery.meanmenu.js" type="text/javascript" />
+        <script src="/assets/js/owl.carousel.min.js" type="text/javascript" />
+        <script src="/assets/js/wow.min.js" type="text/javascript" />
+        <script src="/assets/js/odometer.min.js" type="text/javascript" />
+        <script src="/assets/js/jquery.appear.min.js" type="text/javascript" />
+        <script
+          src="/assets/js/jquery.nice-select.min.js"
+          type="text/javascript"
+        />
+        <script
+          src="/assets/js/jquery.magnific-popup.min.js"
+          type="text/javascript"
+        />
+        <script src="/assets/js/custom.js" type="text/javascript" />
       </Head>
       <HeaderArea />
-      <NaveBar />
+      <NavigationBar />
       {children}
       <FooterArea />
+      <CopyRight />
     </>
   );
 }

@@ -1,9 +1,16 @@
 {
   "private": true,
+  "engines": {
+    "node": "16.17.0",
+    "vscode": "^1.22.0",
+    "npm": "8.15.0",
+    "yarn": "please-use-npm"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",

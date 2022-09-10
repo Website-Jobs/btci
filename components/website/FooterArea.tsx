@@ -85,7 +85,10 @@ function FooterArea() {
                       required
                       autoComplete="off"
                     />
-                    <button className="btn common-btn" type="submit">
+                    <button
+                      className="btn common-btn bg-orange-400"
+                      type="submit"
+                    >
                       Subscribe
                       <span />
                     </button>
