@@ -17,6 +17,11 @@ function PageLayout({ children }: Props) {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
+      <HeaderArea />
+      <NavigationBar />
+      {children}
+      <FooterArea />
+      <CopyRight />
       <Script src="/assets/js/jquery-3.5.1.min.js" strategy="lazyOnload" />
       <Script src="/assets/js/popper.min.js" strategy="lazyOnload" />
       <Script src="/assets/js/bootstrap.min.js" strategy="lazyOnload" />
@@ -37,11 +42,6 @@ function PageLayout({ children }: Props) {
         strategy="lazyOnload"
       />
       <Script src="/assets/js/custom.js" strategy="lazyOnload" />
-      <HeaderArea />
-      <NavigationBar />
-      {children}
-      <FooterArea />
-      <CopyRight />
     </>
   );
 }
