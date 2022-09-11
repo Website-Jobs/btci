@@ -11,15 +11,20 @@ function Slider() {
               <div className="d-table-cell">
                 <div className="container">
                   <div className="banner-content">
-                    <span>Your Financial Status Is Good Hands</span>
-                    <h1>Our Company Provide Best Financial Solutions</h1>
+                    <span>SHQ Bitcoin Investors</span>
+                    <h1>
+                      We Are Focused Exclusively On Blockchain Technology.
+                    </h1>
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do e et dolore magna aliqua. Quis ipsum suspendisse
                       ultrices gravida. Risus commodo{" "}
                     </p>
                     <div className="banner-btn-area">
-                      <a className="banner-btn common-btn" href="/pages/apply">
+                      <a
+                        className="banner-btn common-btn"
+                        href="/accounts/apply"
+                      >
                         Get Started
                         <span />
                       </a>
@@ -39,22 +44,24 @@ function Slider() {
               </div>
             </div>
           </div>
+
           <div className="banner-item">
             <div className="d-table">
               <div className="d-table-cell">
                 <div className="container">
                   <div className="banner-content">
-                    <span>Your Financial Status Is Good Hands</span>
-                    <h1>
-                      Your First Steps Into The Financial Markets Investment
-                    </h1>
+                    <span>SHQ Bitcoin Investors</span>
+                    <h1>Dive Into The Cryptocurrency Markets Investment</h1>
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do e et dolore magna aliqua. Quis ipsum suspendisse
                       ultrices gravida. Risus commodo{" "}
                     </p>
                     <div className="banner-btn-area">
-                      <a className="banner-btn common-btn" href="/pages/apply">
+                      <a
+                        className="banner-btn common-btn"
+                        href="/accounts/apply"
+                      >
                         Get Started
                         <span />
                       </a>
@@ -79,15 +86,18 @@ function Slider() {
               <div className="d-table-cell">
                 <div className="container">
                   <div className="banner-content">
-                    <span>Your Financial Status Is Good Hands</span>
-                    <h1>Finon Will Give Business Opportunity To You</h1>
+                    <span>SHQ Bitcoin Investors</span>
+                    <h1>We Will Deliver Business Opportunities To You</h1>
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do e et dolore magna aliqua. Quis ipsum suspendisse
                       ultrices gravida. Risus commodo{" "}
                     </p>
                     <div className="banner-btn-area">
-                      <a className="banner-btn common-btn" href="/pages/apply">
+                      <a
+                        className="banner-btn common-btn"
+                        href="/accounts/apply"
+                      >
                         Get Started
                         <span />
                       </a>

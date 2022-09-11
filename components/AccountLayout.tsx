@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode } from "react";
 import Head from "next/head";
 import NavigationBar from "./website/NavigationBar";
 import HeaderArea from "./website/HeaderArea";
@@ -7,7 +7,7 @@ import Script from "next/script";
 import { Props } from "../interfaces";
 import CopyRight from "./website/CopyRight";
 
-function PageLayout({ children }: Props) {
+function AccountLayout({ children }: Props) {
   return (
     <>
       <Head>
@@ -51,4 +51,4 @@ function PageLayout({ children }: Props) {
   );
 }
 
-export default PageLayout;
+export default AccountLayout;

@@ -1,7 +1,7 @@
 import React from "react";
 import PageLayout from "../../components/PageLayout";
 
-function about() {
+function news() {
   return (
     <>
       <PageLayout></PageLayout>
@@ -9,4 +9,4 @@ function about() {
   );
 }
 
-export default about;
+export default news;

@@ -10,9 +10,13 @@ function FooterArea() {
               <div className="footer-item">
                 <div className="footer-logo">
                   <Link className="logo" href="/">
-                    <img src="/assets/img/logo-two.png" alt="Logo" />
+                    <img
+                      src="/assets/img/logo-footer.png"
+                      className="h-[80px]"
+                      alt="Bitcoin Invvestor"
+                    />
                   </Link>
-                  <p>
+                  <p className="my-3">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                     do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua. Quis ipsum suspendisse ultrices{" "}
@@ -26,14 +30,7 @@ function FooterArea() {
                     <li>
                       <i className="bx bx-mail-send" />
                       <span>Email:</span>
-                      <a href="/cdn-cgi/l/email-protection#7d15181111123d1b14131213531e1210">
-                        <span
-                          className="__cf_email__"
-                          data-cfemail="2f474a4343406f4946414041014c4042"
-                        >
-                          [email&nbsp;protected]
-                        </span>
-                      </a>
+                      <a>info@shqbtcinvestor.com</a>
                     </li>
                     <li>
                       <i className="bx bx-current-location" />
@@ -50,22 +47,22 @@ function FooterArea() {
                   <h3>Quick Links</h3>
                   <ul>
                     <li>
-                      <a href="about.html">About</a>
+                      <a href="/pages/about">About SHQBTCI</a>
                     </li>
                     <li>
-                      <a href="services.html">Services</a>
+                      <a href="/pages/services">Our Services</a>
                     </li>
                     <li>
-                      <a href="projects.html">Projects</a>
+                      <a href="/pages/contact">Contact Our Team</a>
                     </li>
                     <li>
-                      <a href="faq.html">FAQ</a>
+                      <a href="/pages/advisory">Our Advisory</a>
                     </li>
                     <li>
-                      <a href="blog.html">Blog</a>
+                      <a href="/pages/news">News & Updates</a>
                     </li>
                     <li>
-                      <a href="privacy-policy.html">Privacy Policy</a>
+                      <a href="/pages/privacy">Privacy Policy</a>
                     </li>
                   </ul>
                 </div>
@@ -73,9 +70,12 @@ function FooterArea() {
             </div>
             <div className="col-sm-6 col-lg-3">
               <div className="footer-item">
-                <h3>Newsletter</h3>
+                <h3>Investors' Newsletter</h3>
                 <div className="footer-newsletter">
-                  <p>Accusamus et iusto odio quas molestias except.</p>
+                  <p>
+                    Join our newsletter and grab early investment opportunities.
+                    We will never spam our clients.
+                  </p>
                   <form className="newsletter-form" data-toggle="validator">
                     <input
                       type="email"
@@ -103,22 +103,22 @@ function FooterArea() {
                   <h3>What We Do</h3>
                   <ul>
                     <li>
-                      <a href="about.html">Financial Advice</a>
+                      <a href="/">Financial Advice</a>
                     </li>
                     <li>
-                      <a href="services.html">Planning Strategies</a>
+                      <a href="/">Planning Strategies</a>
                     </li>
                     <li>
-                      <a href="projects.html">Investment Trending</a>
+                      <a href="/">Investment Trading</a>
                     </li>
                     <li>
-                      <a href="faq.html">Wealth Commitment</a>
+                      <a href="/">Wealth Commitment</a>
                     </li>
                     <li>
-                      <a href="blog.html">Our Services</a>
+                      <a href="/">Bitcoin Advisory</a>
                     </li>
                     <li>
-                      <a href="privacy-policy.html">States Element</a>
+                      <a href="/">Investment/Trading </a>
                     </li>
                   </ul>
                 </div>
