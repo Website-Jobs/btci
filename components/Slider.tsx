@@ -16,9 +16,9 @@ function Slider() {
                       We Are Focused Exclusively On Blockchain Technology.
                     </h1>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do e et dolore magna aliqua. Quis ipsum suspendisse
-                      ultrices gravida. Risus commodo{" "}
+                      Since 2013, Pantera has invested in digital assets and
+                      blockchain companies, providing investors with the full
+                      spectrum of exposure to the space.{" "}
                     </p>
                     <div className="banner-btn-area">
                       <a
@@ -53,9 +53,9 @@ function Slider() {
                     <span>SHQ Bitcoin Investors</span>
                     <h1>Dive Into The Cryptocurrency Markets Investment</h1>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do e et dolore magna aliqua. Quis ipsum suspendisse
-                      ultrices gravida. Risus commodo{" "}
+                      Since 2013, Pantera has invested in digital assets and
+                      blockchain companies, providing investors with the full
+                      spectrum of exposure to the space.{" "}
                     </p>
                     <div className="banner-btn-area">
                       <a
@@ -89,9 +89,9 @@ function Slider() {
                     <span>SHQ Bitcoin Investors</span>
                     <h1>We Will Deliver Business Opportunities To You</h1>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do e et dolore magna aliqua. Quis ipsum suspendisse
-                      ultrices gravida. Risus commodo{" "}
+                      Since 2013, Pantera has invested in digital assets and
+                      blockchain companies, providing investors with the full
+                      spectrum of exposure to the space.{" "}
                     </p>
                     <div className="banner-btn-area">
                       <a

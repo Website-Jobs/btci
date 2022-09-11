@@ -17,9 +17,9 @@ function FooterArea() {
                     />
                   </Link>
                   <p className="my-3">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Quis ipsum suspendisse ultrices{" "}
+                    Since 2013, SHQBTC Investors has invested in digital assets
+                    and blockchain companies, providing investors with the full
+                    spectrum of exposure to the space.{" "}
                   </p>
                   <ul>
                     <li>
