@@ -8,9 +8,7 @@ function CopyRight() {
           <div className="copyright-item">
             <p>
               Copyright ©2021 Finon. Designed By TechNumbers Inc.
-              <Link href="https://envytheme.com/" target="_blank">
-                EnvyTheme
-              </Link>
+              <Link href="/">SHQ Bitcoin Investors Inc.</Link>
             </p>
           </div>
         </div>
