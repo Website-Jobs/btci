@@ -1,9 +1,9 @@
 {
   "private": true,
   "engines": {
-    "node": "16.17.0",
+    "node": "16.15.0",
     "vscode": "^1.22.0",
-    "npm": "8.15.0",
+    "npm": "8.5.0",
     "yarn": "please-use-npm"
   },
   "scripts": {
