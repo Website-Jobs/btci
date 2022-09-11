@@ -7,7 +7,7 @@ const Home: NextPage = () => {
     <>
       <PageLayout>
         <Head>
-          <title>Home Page</title>
+          <title>Home | SHQ Bitcoin Investors</title>
         </Head>
         <Slider />
       </PageLayout>
