@@ -22,8 +22,6 @@ function PageLayout({ children }: Props) {
       <Script src="/assets/js/jquery-3.5.1.min.js" strategy="lazyOnload" />
       <Script src="/assets/js/popper.min.js" strategy="lazyOnload" />
       <Script src="/assets/js/bootstrap.min.js" strategy="lazyOnload" />
-      <Script src="/assets/js/form-validator.min.js" strategy="lazyOnload" />
-      <Script src="/assets/js/contact-form-script.js" strategy="lazyOnload" />
       <Script src="/assets/js/jquery.ajaxchimp.min.js" strategy="lazyOnload" />
       <Script src="/assets/js/jquery.meanmenu.js" strategy="lazyOnload" />
       <Script src="/assets/js/owl.carousel.min.js" strategy="lazyOnload" />
