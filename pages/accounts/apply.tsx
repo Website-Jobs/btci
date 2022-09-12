@@ -20,9 +20,16 @@ function apply() {
   const [regUser, setRegUser] = useState(newUser);
   const [loginUser, setLoginUser] = useState(oldUser);
 
-  const doLogin = (e: React.SyntheticEvent) => {
+  const doLogin = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    alert(0);
+
+    const response = await fetch("/api/login", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(loginUser),
+    });
+    const data = await response.json();
+    alert(JSON.stringify(data));
     return false;
   };
 

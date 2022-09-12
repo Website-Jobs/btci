@@ -10,3 +10,9 @@ export interface WebUser {
   email: string;
   password: string;
 }
+
+export interface LoggedInUser {
+  accid: string;
+  email?: string;
+  isLoggedIn?: boolean;
+}
