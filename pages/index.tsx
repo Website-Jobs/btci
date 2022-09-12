@@ -5,7 +5,7 @@ import Slider from "../components/Slider";
 const Home: NextPage = () => {
   return (
     <>
-      <PageLayout>
+      <PageLayout menukey="home">
         <Head>
           <title>Home | SHQ Bitcoin Investors</title>
         </Head>

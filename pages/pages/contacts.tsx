@@ -7,7 +7,7 @@ function contacts() {
       <Head>
         <title>Contact Us | SHQ Bitcoin Investors</title>
       </Head>
-      <PageLayout>
+      <PageLayout menukey="contacts">
         <SubPage title="Contact SHQBTC Team" menutitle="Contact Us" />
       </PageLayout>
     </>

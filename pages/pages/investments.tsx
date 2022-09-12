@@ -7,7 +7,7 @@ function investments() {
       <Head>
         <title>Our Investment Strategies | SHQ Bitcoin Investors</title>
       </Head>
-      <PageLayout>
+      <PageLayout menukey="investments">
         <SubPage title="Our Investment Strategies" menutitle="Investments" />
       </PageLayout>
     </>
