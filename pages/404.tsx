@@ -5,7 +5,7 @@ import PageLayout from "../components/PageLayout";
 const _404: NextPage = () => {
   return (
     <>
-      <PageLayout>
+      <PageLayout menukey="_404">
         <Head>
           <title>404 Error | Page not found</title>
         </Head>

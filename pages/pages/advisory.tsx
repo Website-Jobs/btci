@@ -8,7 +8,7 @@ function advisory() {
       <Head>
         <title>Our Blockchain Advisory | SHQ Bitcoin Investors</title>
       </Head>
-      <PageLayout>
+      <PageLayout menukey="advisory">
         <SubPage title="Our Blockchain Advisory" menutitle="Advisory" />
       </PageLayout>
     </>

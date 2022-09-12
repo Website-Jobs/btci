@@ -1,13 +1,17 @@
-import React, { ReactNode } from "react";
 import Head from "next/head";
-import NavigationBar from "./website/NavigationBar";
-import HeaderArea from "./website/HeaderArea";
-import FooterArea from "./website/FooterArea";
 import Script from "next/script";
-import { Props } from "../interfaces";
+import { ReactNode } from "react";
 import CopyRight from "./website/CopyRight";
+import FooterArea from "./website/FooterArea";
+import HeaderArea from "./website/HeaderArea";
+import NavigationBar from "./website/NavigationBar";
 
-function AccountLayout({ children }: Props) {
+interface Props {
+  menukey: string;
+  children?: ReactNode;
+}
+
+function AccountLayout({ menukey, children }: Props) {
   return (
     <>
       <Head>
@@ -25,7 +29,7 @@ function AccountLayout({ children }: Props) {
         />
       </Head>
       <HeaderArea />
-      <NavigationBar />
+      <NavigationBar menukey={menukey} />
       {children}
       <FooterArea />
       <CopyRight />

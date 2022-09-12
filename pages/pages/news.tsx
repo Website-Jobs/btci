@@ -7,7 +7,7 @@ function news() {
       <Head>
         <title>News & Updates | SHQ Bitcoin Investors</title>
       </Head>
-      <PageLayout>
+      <PageLayout menukey="news">
         <SubPage title="News & Updates" menutitle="Crypto News" />
       </PageLayout>
     </>

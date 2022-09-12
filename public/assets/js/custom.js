@@ -71,27 +71,29 @@ jQuery(function ($) {
 		],
 	});
 
-	// Popup Youtube JS
-	$('.popup-youtube').magnificPopup({
-		disableOn: 700,
-		type: 'iframe',
-		mainClass: 'mfp-fade',
-		removalDelay: 160,
-		preloader: false,
-		fixedContentPos: false
-	});
+	// // Popup Youtube JS
+	// $('.popup-youtube').magnificPopup({
+	// 	disableOn: 700,
+	// 	type: 'iframe',
+	// 	mainClass: 'mfp-fade',
+	// 	removalDelay: 160,
+	// 	preloader: false,
+	// 	fixedContentPos: false
+	// });
 
 	// Wow JS
 	new WOW().init();
 
 	// Odometer JS
-	$('.odometer').appear(function (e) {
-		var odo = $('.odometer');
-		odo.each(function () {
-			var countNumber = $(this).attr('data-count');
-			$(this).html(countNumber);
+	if ($('.odometer').length) {
+		$('.odometer').appear(function (e) {
+			var odo = $('.odometer');
+			odo.each(function () {
+				var countNumber = $(this).attr('data-count');
+				$(this).html(countNumber);
+			});
 		});
-	});
+	}
 
 	// Nice Select JS
 	$('select').niceSelect();
