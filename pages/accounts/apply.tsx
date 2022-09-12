@@ -2,7 +2,6 @@ import Head from "next/head";
 import React, { useState } from "react";
 import PageLayout from "../../components/PageLayout";
 import SubPage from "../../components/website/SubPage";
-
 import { WebUser } from "../../interfaces";
 
 function apply() {
@@ -17,19 +16,51 @@ function apply() {
     password: "",
   };
 
+  const [canReg, setCanReg] = useState(false);
+  const [canLogin, setCanLogin] = useState(false);
+
   const [regUser, setRegUser] = useState(newUser);
   const [loginUser, setLoginUser] = useState(oldUser);
 
-  const doLogin = (e: React.SyntheticEvent) => {
+  const doLogin = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    alert(0);
-    return false;
+    const response = await fetch("/api/v1/accounts/login", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(loginUser),
+    });
+    const data = await response.json();
+    if (data.status) {
+      alert(JSON.stringify(data));
+    }
   };
 
-  const doRegister = (e: React.SyntheticEvent) => {
+  const doRegister = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+    const response = await fetch("/api/v1/accounts/create", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(regUser),
+    });
+    const data = await response.json();
+    if (data.status) {
+      alert(JSON.stringify(data));
+    }
+  };
 
-    return false;
+  const uerExists = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    const response = await fetch("/api/v1/accounts/userexist", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: newUser.email,
+      }),
+    });
+    const data = await response.json();
+    if (data.status) {
+      alert(JSON.stringify(data));
+    }
   };
 
   return (
@@ -37,7 +68,7 @@ function apply() {
       <Head>
         <title>Sign Up | SHQ Bitcoin Investors</title>
       </Head>
-      <PageLayout menukey="contacts">
+      <PageLayout menukey="apply">
         <SubPage title="Sign Up" menutitle="Sign Up" />
         <div className="user-form-area ptb-100 bg-gray-300">
           <div className="container">
@@ -150,6 +181,7 @@ function apply() {
                                 email: e.target.value,
                               })
                             }
+                            onBlur={uerExists}
                           />
                         </div>
                       </div>

@@ -11,9 +11,11 @@ jQuery(function ($) {
 	});
 
 	// Mean Menu JS
-	jQuery('.mean-menu').meanmenu({
-		meanScreenWidth: '991'
-	});
+	if ($('.mean-menu')) {
+		jQuery('.mean-menu').meanmenu({
+			meanScreenWidth: '991'
+		});
+	}
 
 	// Modal JS
 	$('.modal a').not('.dropdown-toggle').on('click', function () {
