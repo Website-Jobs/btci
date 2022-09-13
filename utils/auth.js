@@ -4,7 +4,8 @@ import nextCookie from 'next-cookies'
 import cookie from 'js-cookie'
 
 export const login = ({ token }) => {
-    cookie.set('token', token, { expires: 1 })
+    var inFifteenMinutes = new Date(new Date().getTime() + 15 * 60 * 1000);
+    cookie.set('token', token, { expires: inFifteenMinutes })
     Router.push('/accounts/dashboard')
 }
 
@@ -37,10 +38,8 @@ export const withAuthSync = WrappedComponent => {
                 Router.push('/accounts/apply')
             }
         }
-
         useEffect(() => {
             window.addEventListener('storage', syncLogout)
-
             return () => {
                 window.removeEventListener('storage', syncLogout)
                 window.localStorage.removeItem('logout')
@@ -52,11 +51,9 @@ export const withAuthSync = WrappedComponent => {
 
     Wrapper.getInitialProps = async ctx => {
         const token = auth(ctx)
-
         const componentProps =
             WrappedComponent.getInitialProps &&
             (await WrappedComponent.getInitialProps(ctx))
-
         return { ...componentProps, token }
     }
 
