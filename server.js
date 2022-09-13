@@ -19,8 +19,6 @@ app.prepare().then(() => {
     extended: true
   }))
 
-
-
   server.use("/api", ApiV1Router)
 
 
