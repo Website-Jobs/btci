@@ -28,12 +28,12 @@ function PageLayout({ menukey, children }: Props) {
           type="image/png"
         />
       </Head>
+      <Script src="/assets/js/jquery-3.5.1.min.js" strategy="lazyOnload" />
       <HeaderArea />
       <NavigationBar menukey={menukey} />
       {children}
       <FooterArea />
       <CopyRight />
-      <Script src="/assets/js/jquery-3.5.1.min.js" strategy="lazyOnload" />
       <Script src="/assets/js/popper.min.js" strategy="lazyOnload" />
       <Script src="/assets/js/bootstrap.min.js" strategy="lazyOnload" />
       <Script src="/assets/js/jquery.ajaxchimp.min.js" strategy="lazyOnload" />

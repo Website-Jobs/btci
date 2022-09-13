@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import CopyRight from "./website/CopyRight";
 import FooterArea from "./website/FooterArea";
 import HeaderArea from "./website/HeaderArea";
-import NavigationBar from "./website/NavigationBar";
+import NavigationBar from "./website/ProfileNavigationBar";
 
 interface Props {
   menukey: string;
