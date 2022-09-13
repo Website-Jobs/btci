@@ -8,7 +8,7 @@ const handler = app.getRequestHandler();
 
 
 
-const ApiV1Router = require("./routers/api/v1")
+const ApiV1Router = require("./routers/api")
 
 app.prepare().then(() => {
 
@@ -21,7 +21,7 @@ app.prepare().then(() => {
 
 
 
-  server.use("/api/v1/", ApiV1Router)
+  server.use("/api", ApiV1Router)
 
 
   server.get("*", (req, res) => {

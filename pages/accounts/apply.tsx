@@ -4,6 +4,8 @@ import PageLayout from "../../components/PageLayout";
 import SubPage from "../../components/website/SubPage";
 import { WebUser } from "../../interfaces";
 
+import { login, logout } from "../../utils/auth";
+
 function apply() {
   const newUser: WebUser = {
     firstname: "",
@@ -16,51 +18,43 @@ function apply() {
     password: "",
   };
 
-  const [canReg, setCanReg] = useState(false);
-  const [canLogin, setCanLogin] = useState(false);
-
   const [regUser, setRegUser] = useState(newUser);
   const [loginUser, setLoginUser] = useState(oldUser);
 
   const doLogin = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const response = await fetch("/api/v1/accounts/login", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(loginUser),
-    });
-    const data = await response.json();
-    if (data.status) {
-      alert(JSON.stringify(data));
-    }
+    try {
+      const response = await fetch("/api/login", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(loginUser),
+      });
+      if (response.status == 200) {
+        const data = await response.json();
+        const token = data.accid;
+        await login({ token });
+      } else {
+        await logout();
+      }
+    } catch (error) {}
   };
 
   const doRegister = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const response = await fetch("/api/v1/accounts/create", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(regUser),
-    });
-    const data = await response.json();
-    if (data.status) {
-      alert(JSON.stringify(data));
-    }
-  };
-
-  const uerExists = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    const response = await fetch("/api/v1/accounts/userexist", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: newUser.email,
-      }),
-    });
-    const data = await response.json();
-    if (data.status) {
-      alert(JSON.stringify(data));
-    }
+    try {
+      const response = await fetch("/api/create", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(regUser),
+      });
+      if (response.status == 200) {
+        const data = await response.json();
+        const token = data.accid;
+        await login({ token });
+      } else {
+        await logout();
+      }
+    } catch (error) {}
   };
 
   return (
@@ -76,7 +70,7 @@ function apply() {
               <div className="col-md-6">
                 <div className="container">
                   <div className="form-item">
-                    <form>
+                    <form id="applyLoginForm" onSubmit={doLogin}>
                       <h2>Sign In</h2>
                       <div className="row">
                         <div className="col-lg-12">
@@ -115,9 +109,8 @@ function apply() {
                         </div>
                         <div className="col-lg-12">
                           <button
-                            type="button"
+                            type="submit"
                             className="btn common-btn bg-orange-400"
-                            onClick={doLogin}
                           >
                             Sign In
                             <span />
@@ -130,7 +123,7 @@ function apply() {
               </div>
               <div className="col-md-6">
                 <div className="form-item">
-                  <form>
+                  <form id="applyRegisterForm" onSubmit={doRegister}>
                     <h2>Sign Up</h2>
                     <div className="row">
                       <div className="col-lg-6">
@@ -181,7 +174,6 @@ function apply() {
                                 email: e.target.value,
                               })
                             }
-                            onBlur={uerExists}
                           />
                         </div>
                       </div>
@@ -204,9 +196,8 @@ function apply() {
                       </div>
                       <div className="col-lg-12">
                         <button
-                          type="button"
+                          type="submit"
                           className="btn common-btn bg-orange-500"
-                          onClick={doRegister}
                         >
                           Sign Up
                           <span />
