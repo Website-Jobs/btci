@@ -13,10 +13,25 @@ export interface WebUser {
 }
 
 export interface LoggedInUser {
+  accid?: string;
+  email?: string;
+  firstname?: string;
+  lastname?: string;
+  account:{
+    usd?:Number,
+    btc?: string
+  }
+  lastseen?: Date;
+}
+
+
+
+export interface userProfile {
   accid: string;
   email?: string;
   isLoggedIn?: boolean;
 }
+
 
 export interface IAccounts extends Document {
   accid: string;

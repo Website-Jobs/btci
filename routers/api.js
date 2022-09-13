@@ -16,21 +16,17 @@ router.post("/create", async (req, res) => {
     }).save()
         .then((result) => {
             console.log(result);
-            res.status(200).json({ status: 1, accid: result._id, email: result.email });
+            res.status(200).json({ status: 1, accid: result.id, email: result.email });
         }).catch((err) => {
             res.status(404).json({ status: 0, err: err });
         })
 })
-
 
 router.post("/login", async (req, res) => {
     const { email, password } = req.body;
     await Account.findOne({ email: email })
         .then((result) => {
             const isValidUser = bcrypt.compareSync(password, result.password);
-
-            console.log(isValidUser);
-
             if (isValidUser) {
                 res.status(200).json({ status: 1, accid: result._id, email: result.email });
             } else {
@@ -39,6 +35,28 @@ router.post("/login", async (req, res) => {
         }).catch((err) => {
             res.status(404).json({ status: 0, err: 'Account not found' });
         })
+})
+
+
+router.post("/info", async (req, res) => {
+    const { token } = req.body;
+    await Account.findOne({ _id: token })
+        .then((result) => {
+            res.status(200).json(
+                {
+                    status: 1,
+                    accid: result.id,
+                    email: result.email,
+                    firstname: result.firstname,
+                    lastname: result.lastname,
+                    account: result.account,
+                    lastseen: result.lastseen,
+                });
+        }).catch((err) => {
+            res.status(404).json({ status: 0, err: 'Account not found' });
+        })
+
+
 })
 
 

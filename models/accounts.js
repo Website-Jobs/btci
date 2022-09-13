@@ -1,11 +1,7 @@
-const { model, models, Schema } = require("mongoose");
+const { model, models, Schema, Decimal128 } = require("mongoose");
 
 const accountsScheme = new Schema(
   {
-    accid: {
-      type: String,
-      unique: true
-    },
     email: {
       type: String,
       unique: true
@@ -23,6 +19,16 @@ const accountsScheme = new Schema(
       state: String,
       country: String,
       zipcode: String,
+    },
+    account: {
+      btc: {
+        type: String,
+        default: '0'
+      },
+      usd: {
+        type: Number,
+        default: 0
+      }
     },
     lastseen: {
       type: Date,

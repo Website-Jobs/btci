@@ -18,11 +18,14 @@ function apply() {
     password: "",
   };
 
+  const [error, setError] = useState("");
+
   const [regUser, setRegUser] = useState(newUser);
   const [loginUser, setLoginUser] = useState(oldUser);
 
   const doLogin = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+    setError("");
     try {
       const response = await fetch("/api/login", {
         method: "post",
@@ -34,9 +37,15 @@ function apply() {
         const token = data.accid;
         await login({ token });
       } else {
-        await logout();
+        setError(
+          "<span className='txt-red-500 text-lg text-center'>Login failed: User details may be incorrect.</span>"
+        );
       }
-    } catch (error) {}
+    } catch (error) {
+      setError(
+        "<span className='txt-red-500 text-lg text-center'>Login failed: User details may be incorrect.</span>"
+      );
+    }
   };
 
   const doRegister = async (e: React.SyntheticEvent) => {

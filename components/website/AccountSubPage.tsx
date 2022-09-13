@@ -1,19 +1,26 @@
 import Link from "next/link";
+import { LoggedInUser } from "../../interfaces";
+var money = require("currency-formatter");
+
 interface pageProps {
-  title: string;
-  menutitle: string;
+  userProfile: LoggedInUser;
 }
-function SubPage({ title, menutitle }: pageProps) {
+
+function SubPage({ userProfile }: pageProps) {
   const doGo = () => {};
   return (
     <>
       <section className="provide-area pt-[150px] pb-70">
         <div className="container">
           <div className="section-title three">
+            <h2>{`${userProfile.firstname} ${userProfile.lastname}`}</h2>
             <span className="sub-title">Account Balance</span>
             <h2>
-              <span className="text-green-600"> $600,000.00</span>&nbsp;~&nbsp;
-              <span className="text-orange-700">5.0BTC</span>
+              <span className="text-green-600">
+                {money.format(userProfile.account.usd, { code: "USD" })}
+              </span>
+              &nbsp;~&nbsp;
+              <span className="text-orange-700">{`${userProfile.account.btc} BTC`}</span>
             </h2>
           </div>
           <ul className="nav nav-pills">
@@ -27,7 +34,7 @@ function SubPage({ title, menutitle }: pageProps) {
                 <button className="w-full h-full" onClick={doGo}>
                   <div className="provide-nav">
                     <i className="flaticon-graph" />
-                    <h3>Financial Planning</h3>
+                    <h3>Dashboard</h3>
                   </div>
                 </button>
               </a>
@@ -42,7 +49,7 @@ function SubPage({ title, menutitle }: pageProps) {
                 <button className="w-full h-full" onClick={doGo}>
                   <div className="provide-nav">
                     <i className="flaticon-growth" />
-                    <h3>Cast Investment</h3>
+                    <h3>My Investments</h3>
                   </div>
                 </button>
               </a>

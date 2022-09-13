@@ -6,8 +6,6 @@ const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handler = app.getRequestHandler();
 
-
-
 const ApiV1Router = require("./routers/api")
 
 app.prepare().then(() => {
@@ -19,10 +17,7 @@ app.prepare().then(() => {
     extended: true
   }))
 
-
-
   server.use("/api", ApiV1Router)
-
 
   server.get("*", (req, res) => {
     return handler(req, res);
