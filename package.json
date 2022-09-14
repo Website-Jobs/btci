@@ -3,8 +3,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "node index.js",
+    "start": "next start",
     "lint": "next lint"
+  },
+  "engines": {
+    "node": "15.17",
+    "vscode": "^1.22.0"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",

@@ -1,12 +1,10 @@
-const { model, models, Schema, Decimal128 } = require("mongoose");
+import mongoose from "mongoose";
+mongoose.Promise = global.Promise;
 
-const accountsScheme = new Schema(
+
+const accountsScheme = new mongoose.Schema(
   {
     email: {
-      type: String,
-      unique: true
-    },
-    mobile: {
       type: String,
       unique: true
     },
@@ -38,6 +36,5 @@ const accountsScheme = new Schema(
   { timestamps: true }
 );
 
-const Account = models.Account || model("accounts", accountsScheme);
-
-module.exports = Account;
+const Account = mongoose.models.Account || mongoose.model("accounts", accountsScheme);
+export default  Account;
