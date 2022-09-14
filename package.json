@@ -12,6 +12,7 @@
     "@types/mongoose": "^5.11.97",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.2.0",
+    "cors": "^2.8.5",
     "currency-formatter": "^1.5.9",
     "jquery": "^3.6.1",
     "js-cookie": "^3.0.1",

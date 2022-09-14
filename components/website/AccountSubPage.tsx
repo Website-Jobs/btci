@@ -7,7 +7,6 @@ interface pageProps {
 }
 
 function SubPage({ userProfile }: pageProps) {
-  const doGo = () => {};
   return (
     <>
       <section className="provide-area pt-[150px] pb-70">
@@ -25,19 +24,20 @@ function SubPage({ userProfile }: pageProps) {
           </div>
           <ul className="nav nav-pills">
             <li className="nav-item">
-              <a
-                className="nav-link active"
-                id="pills-home-tab"
-                data-bs-toggle="pill"
-                aria-selected="true"
-              >
-                <button className="w-full h-full" onClick={doGo}>
-                  <div className="provide-nav">
-                    <i className="flaticon-graph" />
-                    <h3>Dashboard</h3>
-                  </div>
-                </button>
-              </a>
+              <Link href="/ieieiee/eueuueue">
+                <a
+                  className="nav-link active"
+                  data-bs-toggle="pill"
+                  aria-selected="true"
+                >
+                  <button className="w-full h-full">
+                    <div className="provide-nav">
+                      <i className="flaticon-graph" />
+                      <h3>Dashboard</h3>
+                    </div>
+                  </button>
+                </a>
+              </Link>
             </li>
             <li className="nav-item" role="presentation">
               <a
@@ -46,7 +46,7 @@ function SubPage({ userProfile }: pageProps) {
                 data-bs-toggle="pill"
                 aria-selected="false"
               >
-                <button className="w-full h-full" onClick={doGo}>
+                <button className="w-full h-full">
                   <div className="provide-nav">
                     <i className="flaticon-growth" />
                     <h3>My Investments</h3>
@@ -61,7 +61,7 @@ function SubPage({ userProfile }: pageProps) {
                 data-bs-toggle="pill"
                 aria-selected="false"
               >
-                <button className="w-full h-full" onClick={doGo}>
+                <button className="w-full h-full">
                   <div className="provide-nav">
                     <i className="flaticon-consultation" />
                     <h3>Consultancy</h3>
@@ -76,7 +76,7 @@ function SubPage({ userProfile }: pageProps) {
                 data-bs-toggle="pill"
                 aria-selected="false"
               >
-                <button className="w-full h-full" onClick={doGo}>
+                <button className="w-full h-full">
                   <div className="provide-nav">
                     <i className="flaticon-education-cost" />
                     <h3>Education Loans</h3>
@@ -91,7 +91,7 @@ function SubPage({ userProfile }: pageProps) {
                 data-bs-toggle="pill"
                 aria-selected="false"
               >
-                <button className="w-full h-full" onClick={doGo}>
+                <button className="w-full h-full">
                   <div className="provide-nav">
                     <i className="flaticon-loan-1" />
                     <h3>House Loans</h3>
@@ -106,7 +106,7 @@ function SubPage({ userProfile }: pageProps) {
                 data-bs-toggle="pill"
                 aria-selected="false"
               >
-                <button className="w-full h-full" onClick={doGo}>
+                <button className="w-full h-full">
                   <div className="provide-nav">
                     <i className="flaticon-investment" />
                     <h3>Invest Planning</h3>

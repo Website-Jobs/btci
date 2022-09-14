@@ -3,8 +3,10 @@ import Router from 'next/router'
 import nextCookie from 'next-cookies'
 import cookie from 'js-cookie'
 
+
 export const login = ({ token }) => {
-    var inFifteenMinutes = new Date(new Date().getTime() + 15 * 60 * 1000);
+    const expire_time = 10;
+    const inFifteenMinutes = new Date(new Date().getTime() + expire_time * 60 * 1000);
     cookie.set('token', token, { expires: inFifteenMinutes })
     Router.push('/accounts/dashboard')
 }
