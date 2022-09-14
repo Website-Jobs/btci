@@ -52,4 +52,4 @@ app.prepare().then(() => {
   process.exit(1);
 });
 
-module.exports = server
+module.exports = app
