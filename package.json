@@ -1,11 +1,15 @@
 {
   "private": true,
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node server.js"
+    "server": "nodemon server.js",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "engines": {
-    "node": "15.x"
+    "node": "^15.x",
+    "vscode": "^1.22.0"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
