@@ -23,6 +23,7 @@ app.prepare().then(() => {
   }));
 
   server.use("/api", ApiV1Router)
+  server.use("/api/v1", ApiV1Router)
 
   server.get("*", (req, res) => {
     return handler(req, res);
@@ -41,8 +42,7 @@ app.prepare().then(() => {
     if (err) throw err;
     console.log("> Ready on PORT 3000");
   });
-})
-  .catch((ex) => {
-    console.error(ex.stack);
-    process.exit(1);
-  });
+}).catch((ex) => {
+  console.error(ex.stack);
+  process.exit(1);
+});
