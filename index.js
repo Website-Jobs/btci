@@ -23,7 +23,9 @@ app.prepare().then(() => {
   }));
 
 
-  server.use("/vercel", ApiV1Router)
+  server.get("/vercel/info", (req, res) => {
+    res.send("We are good to go");
+  });
 
   server.use("/api", ApiV1Router)
 
