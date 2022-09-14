@@ -1,7 +1,7 @@
 const express = require("express");
 const next = require("next");
 require("dotenv").config(".env.local");
-const { connection, connect } = require("mongoose");
+const { connect } = require("mongoose");
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handler = app.getRequestHandler();
@@ -23,7 +23,7 @@ app.prepare().then(() => {
   }));
 
   server.use("/api", ApiV1Router)
-  server.use("/api/v1", ApiV1Router)
+
 
   server.get("*", (req, res) => {
     return handler(req, res);
