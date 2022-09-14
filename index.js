@@ -46,3 +46,5 @@ app.prepare().then(() => {
   console.error(ex.stack);
   process.exit(1);
 });
+
+module.exports = server
