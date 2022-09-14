@@ -61,6 +61,29 @@ router.post("/info", async (req, res) => {
 
 
 
+
+router.get("/:token/info", async (req, res) => {
+    const { token } = req.params;
+    await Account.findOne({ _id: token })
+        .then((result) => {
+            res.status(200).json(
+                {
+                    status: 1,
+                    accid: result.id,
+                    email: result.email,
+                    firstname: result.firstname,
+                    lastname: result.lastname,
+                    account: result.account,
+                    lastseen: result.lastseen,
+                });
+        }).catch((err) => {
+            res.status(404).json({ status: 0, err: 'Account not found' });
+        })
+
+
+})
+
+
 router.get("*", (req, res) => {
     res.status(500).json({ err: 'invalid API route' })
 })
