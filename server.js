@@ -6,7 +6,6 @@ const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handler = app.getRequestHandler();
 const cors = require('cors');
-const helmet = require('helmet');
 
 const ApiV1Router = require("./routers/api")
 
@@ -18,8 +17,10 @@ app.prepare().then(() => {
   server.use(express.urlencoded({
     extended: true
   }))
-  server.use(cors());
-  server.use(helmet())
+
+  server.use(cors({
+    origin: "*"
+  }));
 
   server.use("/api", ApiV1Router)
 
