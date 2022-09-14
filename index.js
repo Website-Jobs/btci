@@ -22,13 +22,11 @@ app.prepare().then(() => {
     origin: "*"
   }));
 
-
-  server.get("/vercel/info", (req, res) => {
+  server.get("/vercel", (req, res) => {
     res.send("We are good to go");
   });
 
   server.use("/api", ApiV1Router)
-
 
   server.get("*", (req, res) => {
     return handler(req, res);
