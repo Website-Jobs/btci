@@ -22,13 +22,11 @@ app.prepare().then(() => {
     origin: "*"
   }));
 
-
-  server.get("/vercel/info", (req, res) => {
+  server.get("/vercel", (req, res) => {
     res.send("We are good to go");
   });
 
   server.use("/api", ApiV1Router)
-
 
   server.get("*", (req, res) => {
     return handler(req, res);
@@ -51,5 +49,3 @@ app.prepare().then(() => {
   console.error(ex.stack);
   process.exit(1);
 });
-
-module.exports = app
