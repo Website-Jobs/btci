@@ -22,6 +22,9 @@ app.prepare().then(() => {
     origin: "*"
   }));
 
+
+  server.use("/vercel", ApiV1Router)
+
   server.use("/api", ApiV1Router)
 
 
