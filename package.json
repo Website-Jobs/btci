@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "node server.js",
+    "start": "node index.js",
     "lint": "next lint"
   },
   "dependencies": {
