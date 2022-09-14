@@ -7,10 +7,6 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "engines": {
-    "node": "^15.x",
-    "vscode": "^1.22.0"
-  },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
     "@types/mongoose": "^5.11.97",
