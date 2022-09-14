@@ -5,6 +5,15 @@ export interface Props {
   children?: ReactNode;
 }
 
+
+export interface ResponseFunctions {
+  GET?: Function
+  POST?: Function
+  PUT?: Function
+  DELETE?: Function
+}
+
+
 export interface WebUser {
   firstname?: string;
   lastname?: string;
