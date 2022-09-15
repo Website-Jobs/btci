@@ -23,5 +23,4 @@ function MyApp({ Component, pageProps }: AppProps) {
     </Provider>
   );
 }
-
 export default MyApp;
