@@ -15,11 +15,15 @@ export default function handler(req:NextApiRequest, res:NextApiResponse) {
       const { email, password } = req.body;
       const {Account} = await dbCon();
       const account = await Account.findOne({ email: email }).catch(catcher);
-      const isValidUser = bcrypt.compareSync(password, account.password);
-      if (isValidUser) {
-        res.status(200).json({ status: 1, accid: account._id, email: account.email });
-      } else {
+      if(!account){
         res.status(404).json({ status: 0, err: 'Account not found' });
+      }else{
+        const isValidUser = bcrypt.compareSync(password, account.password);
+        if (isValidUser) {
+          res.status(200).json({ status: 1, accid: account._id, email: account.email });
+        } else {
+          res.status(404).json({ status: 0, err: 'Account not found' });
+        }
       }
     },
   }

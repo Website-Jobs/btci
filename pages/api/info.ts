@@ -15,6 +15,7 @@ export default function handler(req:NextApiRequest, res:NextApiResponse) {
       const { token } = req.body;
       const {Account} = await dbCon();
       const account = await Account.findOne({ _id: token }).catch(catcher);
+      if(account){
       res.status(200).json({
         status: 1,
         accid: account.id,
@@ -24,6 +25,9 @@ export default function handler(req:NextApiRequest, res:NextApiResponse) {
         account: account.account,
         lastseen: account.lastseen,
       });
+      }else{
+        res.status(404).json({ status: 0, err: 'Account not found' });
+      }
     }
   }
 

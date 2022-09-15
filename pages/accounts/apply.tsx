@@ -1,12 +1,15 @@
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PageLayout from "../../components/PageLayout";
 import SubPage from "../../components/website/SubPage";
 import { WebUser } from "../../interfaces";
+import Working from "../../components/Working";
 
 import { login, logout } from "../../utils/auth";
 
 function apply() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const newUser: WebUser = {
     firstname: "",
     lastname: "",
@@ -18,14 +21,16 @@ function apply() {
     password: "",
   };
 
-  const [error, setError] = useState("");
+  const [loginError, setLoginError] = useState("");
+  const [registerError, setRegisterError] = useState("");
 
   const [regUser, setRegUser] = useState(newUser);
   const [loginUser, setLoginUser] = useState(oldUser);
 
   const doLogin = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    setError("");
+    setIsLoading(true);
+    setLoginError("");
     try {
       const response = await fetch("/api/login", {
         method: "post",
@@ -37,19 +42,19 @@ function apply() {
         const token = data.accid;
         await login({ token });
       } else {
-        setError(
-          "<span className='txt-red-500 text-lg text-center'>Login failed: User details may be incorrect.</span>"
-        );
+        setLoginError("Login failed: User details may be incorrect.");
       }
     } catch (error) {
-      setError(
-        "<span className='txt-red-500 text-lg text-center'>Login failed: User details may be incorrect.</span>"
-      );
+      setLoginError("Login failed: User details may be incorrect.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const doRegister = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+    setRegisterError("");
     try {
       const response = await fetch("/api/create", {
         method: "post",
@@ -61,9 +66,17 @@ function apply() {
         const token = data.accid;
         await login({ token });
       } else {
-        await logout();
+        setRegisterError(
+          "Registration failed: or email may already be in on file."
+        );
       }
-    } catch (error) {}
+    } catch (error) {
+      setRegisterError(
+        "Registration failed: or email may already be in on file."
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -76,12 +89,21 @@ function apply() {
         <div className="user-form-area ptb-100 bg-gray-300">
           <div className="container">
             <div className="row">
+              <div className="col-md-12 text-center">
+                <Working loading={isLoading} />
+              </div>
+
               <div className="col-md-6">
                 <div className="container">
                   <div className="form-item">
                     <form id="applyLoginForm" onSubmit={doLogin}>
                       <h2>Sign In</h2>
                       <div className="row">
+                        <div className="col-lg-12">
+                          <span className="text-red-500 text-lg text-center">
+                            {loginError}
+                          </span>
+                        </div>
                         <div className="col-lg-12">
                           <div className="form-group">
                             <input
@@ -135,6 +157,11 @@ function apply() {
                   <form id="applyRegisterForm" onSubmit={doRegister}>
                     <h2>Sign Up</h2>
                     <div className="row">
+                      <div className="col-lg-12">
+                        <span className="text-red-500 text-lg text-center">
+                          {registerError}
+                        </span>
+                      </div>
                       <div className="col-lg-6">
                         <div className="form-group">
                           <input

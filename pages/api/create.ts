@@ -22,7 +22,11 @@ export default function handler(req:NextApiRequest, res:NextApiResponse) {
         lastname: lastname,
         password: hashesPassword
       }).catch(catcher);
-      res.status(200).json({ status: 1, accid: created.id, email: created.email });
+      if(!created){
+        res.status(404).json({ status: 0, err: 'Error creating account' });
+      }else{
+        res.status(200).json({ status: 1, accid: created.id, email: created.email });
+      }
     }
   }
 
