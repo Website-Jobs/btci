@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "engines": {
-    "node": "^15.17",
+    "node": "16.x",
     "vscode": "^1.22.0"
   },
   "dependencies": {
