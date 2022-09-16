@@ -1,12 +1,11 @@
 import mongoose from "mongoose";
 mongoose.Promise = global.Promise;
 
-
 const accountsScheme = new mongoose.Schema(
   {
     email: {
       type: String,
-      unique: true
+      unique: true,
     },
     password: String,
     firstname: String,
@@ -21,12 +20,12 @@ const accountsScheme = new mongoose.Schema(
     account: {
       btc: {
         type: String,
-        default: '0'
+        default: "0",
       },
       usd: {
         type: Number,
-        default: 0
-      }
+        default: 0,
+      },
     },
     lastseen: {
       type: Date,
@@ -36,5 +35,6 @@ const accountsScheme = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Account = mongoose.models.Account || mongoose.model("Account", accountsScheme);
-export default  Account;
+const Account =
+  mongoose.models.Account || mongoose.model("Account", accountsScheme);
+export default Account;

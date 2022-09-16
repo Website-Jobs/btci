@@ -3,10 +3,10 @@ import counterReducer from "../app/slices/counterSlice";
 import userReducer from "../app/slices/userSlice";
 
 export const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-    user: userReducer,
-  },
+    reducer: {
+        counter: counterReducer,
+        user: userReducer,
+    },
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

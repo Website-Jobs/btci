@@ -5,14 +5,12 @@ export interface Props {
   children?: ReactNode;
 }
 
-
 export interface ResponseFunctions {
-  GET?: Function
-  POST?: Function
-  PUT?: Function
-  DELETE?: Function
+  GET?: Function;
+  POST?: Function;
+  PUT?: Function;
+  DELETE?: Function;
 }
-
 
 export interface WebUser {
   firstname?: string;
@@ -26,21 +24,18 @@ export interface LoggedInUser {
   email?: string;
   firstname?: string;
   lastname?: string;
-  account:{
-    usd?:Number,
-    btc?: string
-  }
+  account: {
+    usd?: Number;
+    btc?: string;
+  };
   lastseen?: Date;
 }
-
-
 
 export interface userProfile {
   accid: string;
   email?: string;
   isLoggedIn?: boolean;
 }
-
 
 export interface IAccounts extends Document {
   accid: string;
