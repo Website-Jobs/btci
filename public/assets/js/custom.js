@@ -10,6 +10,11 @@ jQuery(function ($) {
 		}
 	});
 
+	// Data table
+	// if ($('.myDataTable')) {
+	// 	jQuery('.myTable').DataTable();
+	// }
+
 	// Mean Menu JS
 	if ($('.mean-menu')) {
 		jQuery('.mean-menu').meanmenu({

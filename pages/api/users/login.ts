@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { dbCon } from "../../models";
-import { ResponseFunctions } from "../../interfaces";
+import { dbCon } from "../../../models";
+import { ResponseFunctions } from "../../../interfaces";
 const bcrypt = require("bcryptjs");
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -8,23 +8,21 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const catcher = (error: Error) => res.status(400).json({ status: 0, error: error });
     const handleCase: ResponseFunctions = {
         GET: async (req: NextApiRequest, res: NextApiResponse) => {
-            res.status(400).json({ status: false, err: "Only POST Method is allowed" });
+            res.status(200).json({ status: false, err: "Only POST Method is allowed" });
         },
         POST: async (req: NextApiRequest, res: NextApiResponse) => {
-            const { firstname, lastname, email, password } = req.body;
-            const salt = bcrypt.genSaltSync(10);
-            const hashesPassword = bcrypt.hashSync(password, salt);
+            const { email, password } = req.body;
             const { Account } = await dbCon();
-            const created = await Account.create({
-                email: email,
-                firstname: firstname,
-                lastname: lastname,
-                password: hashesPassword,
-            }).catch(catcher);
-            if (!created) {
-                res.status(404).json({ status: 0, err: "Error creating account" });
+            const account = await Account.findOne({ email: email }).catch(catcher);
+            if (!account) {
+                res.status(404).json({ status: 0, err: "Account not found" });
             } else {
-                res.status(200).json({ status: 1, accid: created.id, email: created.email });
+                const isValidUser = bcrypt.compareSync(password, account.password);
+                if (isValidUser) {
+                    res.status(200).json({ status: 1, accid: account._id, email: account.email });
+                } else {
+                    res.status(404).json({ status: 0, err: "Account not found" });
+                }
             }
         },
     };

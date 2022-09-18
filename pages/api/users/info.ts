@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { dbCon } from "../../models";
-import { ResponseFunctions } from "../../interfaces";
+import { dbCon } from "../../../models";
+import { ResponseFunctions } from "../../../interfaces";
 const bcrypt = require("bcryptjs");
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -11,23 +11,26 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             res.status(200).json({ status: false, err: "Only POST Method is allowed" });
         },
         POST: async (req: NextApiRequest, res: NextApiResponse) => {
-            const { email, password } = req.body;
+            const { token } = req.body;
             const { Account } = await dbCon();
-            const account = await Account.findOne({ email: email }).catch(catcher);
-            if (!account) {
-                res.status(404).json({ status: 0, err: "Account not found" });
+            const account = await Account.findOne({ _id: token }).catch(catcher);
+            if (account) {
+                res.status(200).json({
+                    status: 1,
+                    accid: account.id,
+                    email: account.email,
+                    firstname: account.firstname,
+                    lastname: account.lastname,
+                    account: account.account,
+                    lastseen: account.lastseen,
+                });
             } else {
-                const isValidUser = bcrypt.compareSync(password, account.password);
-                if (isValidUser) {
-                    res.status(200).json({ status: 1, accid: account._id, email: account.email });
-                } else {
-                    res.status(404).json({ status: 0, err: "Account not found" });
-                }
+                res.status(404).json({ status: 0, err: "Account not found" });
             }
         },
     };
 
     const response = handleCase[method];
     if (response) response(req, res);
-    else res.status(400).json({ status: 0, error: "No Response for This Request" });
+    else res.status(400).json({ error: "No Response for This Request" });
 }
