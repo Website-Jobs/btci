@@ -1,4 +1,4 @@
-import { NextPage, GetServerSideProps } from 'next';
+import { NextPage } from 'next';
 import AccountLayout from '../../components/AccountLayout';
 import IsWorking from '../../components/Working';
 import { redirect } from '../../utils/redirect';
@@ -187,10 +187,10 @@ export async function getServerSideProps(context: Context) {
     const { token } = nextCookie(context);
     if (!token) {
         if (typeof window === 'undefined') {
-            context.res.writeHead(302, { Location: '/accounts/apply' });
+            context.res.writeHead(302, { Location: '/accounts' });
             context.res.end();
         } else {
-            Router.push('/accounts/apply');
+            Router.push('/accounts');
         }
     }
     try {

@@ -1,26 +1,19 @@
-import { NextPage, GetServerSideProps, GetServerSidePropsContext, PreviewData } from 'next';
+import { NextPage, GetServerSideProps } from 'next';
 import AccountLayout from '../../components/AccountLayout';
 import nextCookie from 'next-cookies';
 import Router from 'next/router';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 const $ = require('jquery');
 $.DataTable = require('datatables.net');
 
-interface IData {
-    amount?: Number;
-    starts?: String;
-    expires?: String;
-    id?: String;
-}
 const Investments: NextPage = ({ token, result }: any) => {
     const tableRef = useRef<HTMLTableElement | null>(null);
     useEffect(() => {
         const table = $(tableRef.current).DataTable({
             data: result,
             columns: [{ data: '_id' }, { data: 'amount' }, { data: 'starts' }, { data: 'expires' }],
-            destroy: true, // I think some clean up is happening here
+            destroy: true,
         });
-        // Extra step to do extra clean-up.
         return function () {
             console.log('Table destroyed');
             table.destroy();
@@ -50,10 +43,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const { token } = nextCookie(context);
     if (!token) {
         if (typeof window === 'undefined') {
-            context.res.writeHead(302, { Location: '/accounts/apply' });
+            context.res.writeHead(302, { Location: '/accounts' });
             context.res.end();
         } else {
-            Router.push('/accounts/apply');
+            Router.push('/accounts');
         }
     }
     // const invest;
