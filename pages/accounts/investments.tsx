@@ -12,23 +12,11 @@ interface IData {
     expires?: String;
     id?: String;
 }
-const Investments: NextPage = ({ token }: any) => {
+const Investments: NextPage = ({ token, result }: any) => {
     const tableRef = useRef<HTMLTableElement | null>(null);
-    const [idata, setIData] = useState<IData[]>([]);
-
     useEffect(() => {
-        const ListAll = async () => {
-            try {
-                const response = await fetch(`/api/investments/${token}/list`);
-                if (response.status == 200) {
-                    const result = await response.json();
-                    setIData(result.data);
-                }
-            } catch (error) {}
-        };
-        ListAll();
         const table = $(tableRef.current).DataTable({
-            data: idata,
+            data: result,
             columns: [{ data: '_id' }, { data: 'amount' }, { data: 'starts' }, { data: 'expires' }],
             destroy: true, // I think some clean up is happening here
         });
@@ -37,7 +25,7 @@ const Investments: NextPage = ({ token }: any) => {
             console.log('Table destroyed');
             table.destroy();
         };
-    }, [idata, token]);
+    });
 
     return (
         <>
@@ -69,9 +57,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         }
     }
     // const invest;
+    const domain = process.env.DOMAIN || 'http://localhost:3000';
+    const response = await fetch(`${domain}/api/investments/${token}/list`);
+    const result = await response.json();
     http: return {
         props: {
             token: token,
+            result: result.data,
         },
     };
 };
