@@ -1,4 +1,4 @@
-import { NextPage, GetServerSideProps } from 'next';
+import { NextPage } from 'next';
 import AccountLayout from '../../components/AccountLayout';
 import IsWorking from '../../components/Working';
 import { redirect } from '../../utils/redirect';

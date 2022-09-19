@@ -4,7 +4,7 @@ import AccountLayout from '../../components/AccountLayout';
 import nextCookie from 'next-cookies';
 import Router from 'next/router';
 
-const Index: NextPage = () => {
+const Index: NextPage = ({ token }: any) => {
     return (
         <>
             <AccountLayout menukey="dashboard" subpage={true}></AccountLayout>
