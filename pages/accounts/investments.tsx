@@ -43,10 +43,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const { token } = nextCookie(context);
     if (!token) {
         if (typeof window === 'undefined') {
-            context.res.writeHead(302, { Location: '/accounts/apply' });
+            context.res.writeHead(302, { Location: '/accounts' });
             context.res.end();
         } else {
-            Router.push('/accounts/apply');
+            Router.push('/accounts');
         }
     }
     // const invest;
