@@ -1,6 +1,6 @@
-import Link from "next/link";
-import Image from "next/image";
-import { logout } from "../../utils/auth";
+import Link from 'next/link';
+import Image from 'next/image';
+import { logout } from '../../utils/auth';
 
 interface menuProps {
     menukey: string;
@@ -36,48 +36,48 @@ function NavigationBar({ menukey }: menuProps) {
                                 <ul className="navbar-nav">
                                     <li className="nav-item">
                                         <Link className="navbar-brand" href="/">
-                                            <a className={menukey == "home" ? "active" : ""}>Home</a>
+                                            <a className={menukey == 'home' ? 'active' : ''}>Home</a>
                                         </Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link href="/pages/about" className="nav-link">
-                                            <a className={menukey == "about" ? "active" : ""}>About Us</a>
+                                            <a className={menukey == 'about' ? 'active' : ''}>About Us</a>
                                         </Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link href="/pages/services" className="nav-link">
-                                            <a className={menukey == "services" ? "active" : ""}>Services</a>
+                                            <a className={menukey == 'services' ? 'active' : ''}>Services</a>
                                         </Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link href="/pages/advisory" className="nav-link">
-                                            <a className={menukey == "advisory" ? "active" : ""}>Advisory</a>
+                                            <a className={menukey == 'advisory' ? 'active' : ''}>Advisory</a>
                                         </Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link href="/pages/investments" className="nav-link">
-                                            <a className={menukey == "investments" ? "active" : ""}>Investments</a>
+                                            <a className={menukey == 'investments' ? 'active' : ''}>Investments</a>
                                         </Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link href="/pages/news" className="nav-link">
-                                            <a className={menukey == "news" ? "active" : ""}>News</a>
+                                            <a className={menukey == 'news' ? 'active' : ''}>News</a>
                                         </Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link href="/pages/testimonials" className="nav-link">
-                                            <a className={menukey == "testimonials" ? "active" : ""}>Testimonies</a>
+                                            <a className={menukey == 'testimonials' ? 'active' : ''}>Testimonies</a>
                                         </Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link href="/pages/contacts" className="nav-link">
-                                            <a className={menukey == "contacts" ? "active" : ""}>Contact Us</a>
+                                            <a className={menukey == 'contacts' ? 'active' : ''}>Contact Us</a>
                                         </Link>
                                     </li>
                                 </ul>
                                 <div className="side-nav">
-                                    <Link href="/accounts/apply">
-                                        <a className="consultant-btn">Register / Login</a>
+                                    <Link href="/accounts">
+                                        <a className="consultant-btn">SHQ Login</a>
                                     </Link>
                                 </div>
                             </div>

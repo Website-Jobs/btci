@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next';
+import { NextPage, GetServerSideProps } from 'next';
 import AccountLayout from '../../components/AccountLayout';
 import nextCookie from 'next-cookies';
 import Router from 'next/router';
@@ -6,7 +6,7 @@ import { useRef, useEffect } from 'react';
 const $ = require('jquery');
 $.DataTable = require('datatables.net');
 
-const Investments = ({ token, result }: any) => {
+const Investments: NextPage = ({ token, result }: any) => {
     const tableRef = useRef<HTMLTableElement | null>(null);
     useEffect(() => {
         const table = $(tableRef.current).DataTable({

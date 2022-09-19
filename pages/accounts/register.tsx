@@ -9,7 +9,7 @@ import IsWorking from '../../components/Working';
 
 import { login, logout } from '../../utils/auth';
 
-const Apply: NextPage = () => {
+const Accounts: NextPage = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     const newUser: WebUser = {
@@ -243,4 +243,4 @@ const Apply: NextPage = () => {
     );
 };
 
-export default Apply;
+export default Accounts;

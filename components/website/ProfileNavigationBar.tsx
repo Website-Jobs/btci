@@ -1,6 +1,6 @@
-import Link from "next/link";
-import Image from "next/image";
-import { logout } from "../../utils/auth";
+import Link from 'next/link';
+import Image from 'next/image';
+import { logout } from '../../utils/auth';
 
 interface menuProps {
     menukey: string;
@@ -42,7 +42,7 @@ function NavigationBar({ menukey }: menuProps) {
                                 </ul>
                                 <div className="side-nav">
                                     <button className="consultant-btn" onClick={logout}>
-                                        Logout
+                                        Logout SHQ
                                     </button>
                                 </div>
                             </div>

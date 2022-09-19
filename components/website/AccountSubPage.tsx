@@ -93,7 +93,7 @@ function SubPage({ userProfile, subpage }: pageProps) {
                                     <button className="w-full h-full">
                                         <div className="provide-nav">
                                             <i className="flaticon-investment" />
-                                            <h3>Invest Planning</h3>
+                                            <h3>Withdrawal Request</h3>
                                         </div>
                                     </button>
                                 </a>

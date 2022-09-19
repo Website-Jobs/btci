@@ -16,10 +16,10 @@ export const auth = ctx => {
     // If there's no token, it means the user is not logged in.
     if (!token) {
         if (typeof window === 'undefined') {
-            ctx.res.writeHead(302, { Location: '/accounts/apply' })
+            ctx.res.writeHead(302, { Location: '/accounts' })
             ctx.res.end()
         } else {
-            Router.push('/accounts/apply')
+            Router.push('/accounts')
         }
     }
     return token
@@ -29,7 +29,7 @@ export const logout = () => {
     cookie.remove('token')
     // to support logging out from all windows
     window.localStorage.setItem('logout', Date.now())
-    Router.push('/accounts/apply')
+    Router.push('/accounts')
 }
 
 export const withAuthSync = WrappedComponent => {
@@ -37,7 +37,7 @@ export const withAuthSync = WrappedComponent => {
         const syncLogout = event => {
             if (event.key === 'logout') {
                 console.log('logged out from storage!')
-                Router.push('/accounts/apply')
+                Router.push('/accounts')
             }
         }
         useEffect(() => {
