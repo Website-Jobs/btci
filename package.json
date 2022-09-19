@@ -15,7 +15,6 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
     "@tanstack/react-table": "^8.5.13",
-    "@types/mongoose": "^5.11.97",
     "bcryptjs": "^2.4.3",
     "currency-formatter": "^1.5.9",
     "datatables.net-datetime": "^1.1.2",
