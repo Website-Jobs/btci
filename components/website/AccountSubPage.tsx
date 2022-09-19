@@ -28,7 +28,7 @@ function SubPage({ userProfile, subpage }: pageProps) {
 
                     <ul className="nav nav-pills">
                         <li className="nav-item">
-                            <Link href="/accounts/dashboard">
+                            <Link href="/accounts">
                                 <a className="nav-link">
                                     <button className="w-full h-full">
                                         <div className="provide-nav">
@@ -64,7 +64,7 @@ function SubPage({ userProfile, subpage }: pageProps) {
                             </Link>
                         </li>{' '}
                         <li className="nav-item">
-                            <Link href="/accounts/dashboard">
+                            <Link href="/accounts">
                                 <a className="nav-link">
                                     <button className="w-full h-full">
                                         <div className="provide-nav">
@@ -76,7 +76,7 @@ function SubPage({ userProfile, subpage }: pageProps) {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link href="/accounts/dashboard">
+                            <Link href="/accounts">
                                 <a className="nav-link">
                                     <button className="w-full h-full">
                                         <div className="provide-nav">
@@ -88,7 +88,7 @@ function SubPage({ userProfile, subpage }: pageProps) {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link href="/accounts/dashboard">
+                            <Link href="/accounts">
                                 <a className="nav-link">
                                     <button className="w-full h-full">
                                         <div className="provide-nav">
