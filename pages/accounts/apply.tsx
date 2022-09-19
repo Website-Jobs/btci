@@ -5,7 +5,7 @@ import PageLayout from '../../components/PageLayout';
 import SubPage from '../../components/website/SubPage';
 import { WebUser } from '../../interfaces';
 
-// import IsWorking from '../../components/Working';
+import IsWorking from '../../components/Working';
 
 import { login, logout } from '../../utils/auth';
 
@@ -87,7 +87,9 @@ const Apply: NextPage = () => {
                 <div className="user-form-area ptb-100 bg-gray-300">
                     <div className="container">
                         <div className="row">
-                            <div className="col-md-12 text-center">{/* <IsWorking loading={isLoading} /> */}</div>
+                            <div className="col-md-12 text-center">
+                                <IsWorking loading={isLoading} />
+                            </div>
 
                             <div className="col-md-6">
                                 <div className="container">

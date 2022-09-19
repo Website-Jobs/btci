@@ -2,17 +2,34 @@ import { NextPage, GetServerSideProps, GetServerSidePropsContext, PreviewData } 
 import AccountLayout from '../../components/AccountLayout';
 import nextCookie from 'next-cookies';
 import Router from 'next/router';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 const $ = require('jquery');
 $.DataTable = require('datatables.net');
 
-const Investments: NextPage = () => {
+interface IData {
+    amount?: Number;
+    starts?: String;
+    expires?: String;
+    id?: String;
+}
+const Investments: NextPage = ({ token }: any) => {
     const tableRef = useRef<HTMLTableElement | null>(null);
+    const [idata, setIData] = useState<IData[]>([]);
+
     useEffect(() => {
-        console.log(tableRef.current);
+        const ListAll = async () => {
+            try {
+                const response = await fetch(`/api/investments/${token}/list`);
+                if (response.status == 200) {
+                    const result = await response.json();
+                    setIData(result.data);
+                }
+            } catch (error) {}
+        };
+        ListAll();
         const table = $(tableRef.current).DataTable({
-            data: [['Agu Chux', 'Engineer']],
-            columns: [{ title: 'Name' }, { title: 'Position' }],
+            data: idata,
+            columns: [{ data: '_id' }, { data: 'amount' }, { data: 'starts' }, { data: 'expires' }],
             destroy: true, // I think some clean up is happening here
         });
         // Extra step to do extra clean-up.
@@ -20,14 +37,14 @@ const Investments: NextPage = () => {
             console.log('Table destroyed');
             table.destroy();
         };
-    }, []);
+    }, [idata, token]);
 
     return (
         <>
             <AccountLayout menukey="dashboard" subpage={false}>
                 <div className="section-title three">
                     <h2>
-                        Invetments
+                        Investments
                         <hr />
                     </h2>
                 </div>

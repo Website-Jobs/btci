@@ -1,24 +1,47 @@
 import { NextPage, GetServerSideProps } from 'next';
 import AccountLayout from '../../components/AccountLayout';
+import IsWorking from '../../components/Working';
+import { redirect } from '../../utils/redirect';
+
 import nextCookie from 'next-cookies';
 import Router from 'next/router';
 import React, { useState } from 'react';
 import { Context } from 'vm';
 
 interface Packed {
-    package?: string;
+    packageid: string;
     amount?: number;
     starts?: string;
     ends?: string;
 }
 const Invest: NextPage = ({ lists }: any) => {
     const [createError, setCreateError] = useState('');
-    const [packed, setPacked] = useState<Packed>({ package: '' });
+    const [packed, setPacked] = useState<Packed>({ packageid: '', amount: 0, starts: '', ends: '' });
+    const [busy, setBusy] = useState(false);
 
-    const doCreate = (e: React.SyntheticEvent) => {
+    const doCreate = async (e: React.SyntheticEvent) => {
         e.preventDefault();
+        setBusy(true);
         setCreateError('');
-        alert(JSON.stringify(packed));
+        try {
+            const response = await fetch('/api/investments/create', {
+                method: 'post',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(packed),
+            });
+            if (response.status == 200) {
+                const data = await response.json();
+                if (data.status) {
+                    redirect('/accounts/investments');
+                }
+            } else {
+                setCreateError('Creating Investment failed.');
+            }
+        } catch (error) {
+            setCreateError('Creating Investment failed.');
+        } finally {
+            setBusy(false);
+        }
     };
     return (
         <>
@@ -32,6 +55,9 @@ const Invest: NextPage = ({ lists }: any) => {
                     <div className="container">
                         <div className="m-[30px]">
                             <div className="row">
+                                <div className="col-md-12 w-full text-center my-4">
+                                    <IsWorking loading={busy} />
+                                </div>
                                 <div className="col-md-3"></div>
                                 <div className="col-md-6">
                                     <div className="container">
@@ -44,16 +70,17 @@ const Invest: NextPage = ({ lists }: any) => {
                                                         </span>
                                                     </div>
                                                     <div className="col-lg-12">
-                                                        <label htmlFor="package" className="text-xl">
+                                                        <label htmlFor="packageid" className="text-xl">
                                                             Select Package
                                                         </label>
                                                         <div className="form-group mt-2">
                                                             <select
-                                                                name="package"
-                                                                id="package"
+                                                                name="packageid"
+                                                                id="packageid"
+                                                                required={true}
                                                                 className="form-control text-lg"
                                                                 onChange={(e) =>
-                                                                    setPacked({ ...packed, package: e.target.value })
+                                                                    setPacked({ ...packed, packageid: e.target.value })
                                                                 }
                                                             >
                                                                 <option value="">Select Package</option>
@@ -74,6 +101,7 @@ const Invest: NextPage = ({ lists }: any) => {
                                                             <input
                                                                 name="amount"
                                                                 id="amount"
+                                                                required={true}
                                                                 type={'number'}
                                                                 value={packed.amount}
                                                                 className="form-control text-lg"
@@ -97,6 +125,7 @@ const Invest: NextPage = ({ lists }: any) => {
                                                                     <input
                                                                         name="starts"
                                                                         id="starts"
+                                                                        required={true}
                                                                         type={'datetime-local'}
                                                                         value={packed.starts}
                                                                         className="form-control text-lg"
@@ -117,6 +146,7 @@ const Invest: NextPage = ({ lists }: any) => {
                                                                     <input
                                                                         name="ends"
                                                                         id="ends"
+                                                                        required={true}
                                                                         type={'datetime-local'}
                                                                         value={packed.ends}
                                                                         className="form-control text-lg"
