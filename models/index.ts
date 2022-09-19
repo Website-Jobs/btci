@@ -1,16 +1,15 @@
-import mongoose, { Model } from "mongoose";
-import Account from "./accounts";
+import mongoose, { Model } from 'mongoose';
+import Accounts from './accounts';
+import Packages from './packages';
 
 const { MONGOOSE_URI } = process.env;
 
 export const dbCon = async () => {
-  const conn = await mongoose
-    .connect(MONGOOSE_URI as string)
-    .then((go) => {
-      console.log(go);
-    })
-    .catch((err) => console.log(err));
-  console.log("Mongoose Connection Established");
+    const conn = await mongoose
+        .connect(MONGOOSE_URI as string)
+        .then(() => {})
+        .catch((err) => console.log(err));
+    console.log('Mongoose Connection Established');
 
-  return { conn, Account };
+    return { conn, Accounts, Packages };
 };

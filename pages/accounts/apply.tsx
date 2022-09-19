@@ -4,7 +4,8 @@ import React, { useState, useRef } from 'react';
 import PageLayout from '../../components/PageLayout';
 import SubPage from '../../components/website/SubPage';
 import { WebUser } from '../../interfaces';
-import Working from '../../components/Working';
+
+import IsWorking from '../../components/Working';
 
 import { login, logout } from '../../utils/auth';
 
@@ -33,7 +34,7 @@ const Apply: NextPage = () => {
         setIsLoading(true);
         setLoginError('');
         try {
-            const response = await fetch('/api/login', {
+            const response = await fetch('/api/users/login', {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(loginUser),
@@ -57,7 +58,7 @@ const Apply: NextPage = () => {
         setIsLoading(true);
         setRegisterError('');
         try {
-            const response = await fetch('/api/create', {
+            const response = await fetch('/api/users/create', {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(regUser),
@@ -87,7 +88,7 @@ const Apply: NextPage = () => {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12 text-center">
-                                <Working loading={isLoading} />
+                                <IsWorking loading={isLoading} />
                             </div>
 
                             <div className="col-md-6">

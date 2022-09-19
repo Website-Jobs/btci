@@ -5,7 +5,7 @@ import cookie from 'js-cookie'
 
 
 export const login = ({ token }) => {
-    const expire_time = 10;
+    const expire_time = process.env.COOKIE_TIME_IN_MINS || 10
     const inFifteenMinutes = new Date(new Date().getTime() + expire_time * 60 * 1000);
     cookie.set('token', token, { expires: inFifteenMinutes })
     Router.push('/accounts/dashboard')
