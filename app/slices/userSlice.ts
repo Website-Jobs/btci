@@ -1,41 +1,34 @@
-import type { PayloadAction } from "@reduxjs/toolkit";
-import { createSlice } from "@reduxjs/toolkit";
+import { TUser } from '../../interfaces/index';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import type { RootState } from '../store';
+import Cookies from 'universal-cookie';
+import { Schema } from 'mongoose';
 
-export interface userState {
-    firstname: string;
-    lastname: string;
-    email: string;
-    password: string;
+const cookies = new Cookies();
+export const storedToken = cookies.get('token') as Schema.Types.ObjectId;
+
+interface OUser {
+    userinfo: object;
 }
 
-const initialState: userState = {
-    firstname: "",
-    lastname: "",
-    email: "",
-    password: "",
+const initialState: OUser = {
+    userinfo: {},
 };
 
 export const userSlice = createSlice({
-    name: "user",
+    name: 'userEmail',
     initialState,
     reducers: {
-        setFn: (state, action: PayloadAction<string>) => {
-            state.firstname = action.payload;
-        },
-        setLn: (state, action: PayloadAction<string>) => {
-            state.lastname = action.payload;
-        },
-        setEmail: (state, action: PayloadAction<string>) => {
-            state.email = action.payload;
-        },
-        setPw: (state, action: PayloadAction<string>) => {
-            state.password = action.payload;
-        },
-        updateUser: (state, action: PayloadAction<userState>) => {
-            state = action.payload;
+        updateUser: (state, action: PayloadAction<object>) => {
+            state.userinfo = action.payload;
         },
     },
 });
 
-export const { setFn, setLn, setEmail, setPw } = userSlice.actions;
+//Export all states to access from consumer components
+export const userInfo = (state: RootState) => state.iuser;
+
+//Export all actions
+export const { updateUser } = userSlice.actions;
 export default userSlice.reducer;

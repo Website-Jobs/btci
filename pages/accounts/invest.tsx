@@ -14,7 +14,7 @@ interface Packed {
     starts?: string;
     ends?: string;
 }
-const Invest: NextPage = ({ lists }: any) => {
+const Invest: NextPage = ({ lists, profile }: any) => {
     const [createError, setCreateError] = useState('');
     const [packed, setPacked] = useState<Packed>({ packageid: '', amount: 0, starts: '', ends: '' });
     const [busy, setBusy] = useState(false);
@@ -45,7 +45,7 @@ const Invest: NextPage = ({ lists }: any) => {
     };
     return (
         <>
-            <AccountLayout menukey="dashboard" subpage={false}>
+            <AccountLayout userinfo={profile} menukey="dashboard" subpage={false}>
                 <section className="provide-area pt-[0px] pb-70">
                     <div className="section-title three">
                         <h2>
@@ -187,22 +187,25 @@ export async function getServerSideProps(context: Context) {
     const { token } = nextCookie(context);
     if (!token) {
         if (typeof window === 'undefined') {
-            context.res.writeHead(302, { Location: '/accounts' });
+            context.res.writeHead(302, { Location: '/auth/login' });
             context.res.end();
         } else {
-            Router.push('/accounts');
+            Router.push('/auth/login');
         }
     }
-    try {
-        const packages = await fetch(`${process.env.DOMAIN}//api/packages/list`);
-        const packagesData = await packages.json();
-        console.log(packagesData);
-        return {
-            props: { lists: packagesData.data },
-        };
-    } catch (error) {
-        console.log(error);
-    }
+
+    const packages = await fetch(`${process.env.DOMAIN}/api/packages/list`);
+    const packagesData = await packages.json();
+
+    const response = await fetch(`${process.env.DOMAIN}/api/users/${token}/info`);
+    const result = await response.json();
+
+    http: return {
+        props: {
+            lists: packagesData.data,
+            profile: result,
+        },
+    };
 }
 
 export default Invest;

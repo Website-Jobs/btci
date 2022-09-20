@@ -1,124 +1,38 @@
 import { NextPage } from 'next';
-import Head from 'next/head';
-import React, { useState } from 'react';
-import PageLayout from '../../components/PageLayout';
-import SubPage from '../../components/website/SubPage';
-import { WebUser } from '../../interfaces';
+import { GetServerSideProps } from 'next';
+import AccountLayout from '../../components/AccountLayout';
+import nextCookie from 'next-cookies';
+import Router from 'next/router';
 
-import IsWorking from '../../components/Working';
-import { login } from '../../utils/auth';
-
-const Accounts: NextPage = () => {
-    const [isLoading, setIsLoading] = useState(false);
-    const oldUser: WebUser = {
-        email: '',
-        password: '',
-    };
-
-    const [loginError, setLoginError] = useState('');
-    const [loginUser, setLoginUser] = useState(oldUser);
-
-    const doLogin = async (e: React.SyntheticEvent) => {
-        e.preventDefault();
-        setIsLoading(true);
-        setLoginError('');
-        try {
-            const response = await fetch('/api/users/login', {
-                method: 'post',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(loginUser),
-            });
-            if (response.status == 200) {
-                const data = await response.json();
-                const token = data.accid;
-                await login({ token });
-            } else {
-                setLoginError('Login failed: User details may be incorrect.');
-            }
-        } catch (error) {
-            setLoginError('Login failed: User details may be incorrect.');
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
+const Index: NextPage = ({ token, profile }: any) => {
     return (
         <>
-            <Head>
-                <title>Sign Up | SHQ Bitcoin Investors</title>
-            </Head>
-            <PageLayout menukey="apply">
-                <SubPage title="Sign Up" menutitle="Sign Up" />
-                <div className="user-form-area ptb-100 bg-gray-300">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-3"></div>
-                            <div className="col-md-6">
-                                <div className="container">
-                                    <div className="form-item">
-                                        <form id="applyLoginForm" onSubmit={doLogin}>
-                                            <h2>Sign In</h2>
-                                            <div className="row">
-                                                <div className="col-md-12 text-center w-full mb-4">
-                                                    <IsWorking loading={isLoading} />
-                                                </div>
-                                                <div className="col-lg-12">
-                                                    <span className="text-red-500 text-lg text-center">
-                                                        {loginError}
-                                                    </span>
-                                                </div>
-                                                <div className="col-lg-12">
-                                                    <div className="form-group">
-                                                        <input
-                                                            type="email"
-                                                            autoComplete="off"
-                                                            className="form-control"
-                                                            placeholder="Email"
-                                                            value={loginUser.email}
-                                                            onChange={(e) =>
-                                                                setLoginUser({
-                                                                    ...loginUser,
-                                                                    email: e.target.value,
-                                                                })
-                                                            }
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div className="col-lg-12">
-                                                    <div className="form-group">
-                                                        <input
-                                                            type="password"
-                                                            autoComplete="off"
-                                                            className="form-control"
-                                                            placeholder="Password"
-                                                            value={loginUser.password}
-                                                            onChange={(e) =>
-                                                                setLoginUser({
-                                                                    ...loginUser,
-                                                                    password: e.target.value,
-                                                                })
-                                                            }
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div className="col-lg-12">
-                                                    <button type="submit" className="btn common-btn bg-orange-400">
-                                                        Sign In
-                                                        <span />
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-3"></div>
-                        </div>
-                    </div>
-                </div>
-            </PageLayout>
+            <AccountLayout userinfo={profile} menukey="dashboard" subpage={true}></AccountLayout>
         </>
     );
 };
 
-export default Accounts;
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    const { token } = nextCookie(context);
+    if (!token) {
+        if (typeof window === 'undefined') {
+            context.res.writeHead(302, { Location: '/auth/login' });
+            context.res.end();
+        } else {
+            Router.push('/auth/login');
+        }
+    }
+
+    const domain = process.env.DOMAIN || 'http://localhost:3000';
+    const response = await fetch(`${domain}/api/users/${token}/info`);
+    const result = await response.json();
+
+    http: return {
+        props: {
+            token: token,
+            profile: result,
+        },
+    };
+};
+
+export default Index;
