@@ -1,8 +1,6 @@
 import { NextPage } from 'next';
 import AccountLayout from '../../components/AccountLayout';
 import IsWorking from '../../components/Working';
-import { redirect } from '../../utils/redirect';
-
 import nextCookie from 'next-cookies';
 import Router from 'next/router';
 import React, { useState } from 'react';
@@ -31,9 +29,8 @@ const Invest: NextPage = ({ lists, profile }: any) => {
             });
             if (response.status == 200) {
                 const data = await response.json();
-                if (data.status) {
-                    redirect('/accounts/investments');
-                }
+                setCreateError('Wow! Investment has been created');
+                Router.push('/accounts/investments');
             } else {
                 setCreateError('Creating Investment failed.');
             }

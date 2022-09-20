@@ -1,26 +1,14 @@
-
 import { NextPage, GetServerSideProps } from 'next';
 import AccountLayout from '../../components/AccountLayout';
 import nextCookie from 'next-cookies';
 import Router from 'next/router';
 import { useRef, useEffect } from 'react';
+import Link from 'next/link';
 const $ = require('jquery');
 $.DataTable = require('datatables.net');
 
 const Investments: NextPage = ({ token, result, profile }: any) => {
     const tableRef = useRef<HTMLTableElement | null>(null);
-    useEffect(() => {
-        const table = $(tableRef.current).DataTable({
-            data: result,
-            columns: [{ data: '_id' }, { data: 'amount' }, { data: 'starts' }, { data: 'expires' }],
-            destroy: true,
-        });
-        return function () {
-            console.log('Table destroyed');
-            table.destroy();
-        };
-    });
-
     return (
         <>
             <AccountLayout userinfo={profile} menukey="dashboard" subpage={false}>
@@ -32,7 +20,34 @@ const Investments: NextPage = ({ token, result, profile }: any) => {
                 </div>
                 <div className="container">
                     <div className="m-[30px]">
-                        <table id="myDataTable" className="display w-full m-[20px]" width="100%" ref={tableRef}></table>
+                        <table id="myDataTable" className="display w-full m-[20px] table" width="100%" ref={tableRef}>
+                            <thead>
+                                <tr>
+                                    <th scope="col">INVESTMENT ID</th>
+                                    <th scope="col">AMOUNT</th>
+                                    <th scope="col">START DATE</th>
+                                    <th scope="col">EXPIRE DATE</th>
+                                    <th scope="col">-</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {result.map((item: any, i: any) => (
+                                    <>
+                                        <tr>
+                                            <th scope="row">{item._id}</th>
+                                            <td>{item.amount}</td>
+                                            <td>{item.starts}</td>
+                                            <td>{item.expires}</td>
+                                            <td>
+                                                <Link href="#" key={i}>
+                                                    <a className="btn btn-sm btn-success text-white">Withdraw</a>
+                                                </Link>
+                                            </td>
+                                        </tr>
+                                    </>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </AccountLayout>
