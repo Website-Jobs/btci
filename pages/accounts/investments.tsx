@@ -6,7 +6,7 @@ import { useRef, useEffect } from 'react';
 const $ = require('jquery');
 $.DataTable = require('datatables.net');
 
-const Investments: NextPage = ({ token, result }: any) => {
+const Investments: NextPage = ({ token, result,profile }: any) => {
     const tableRef = useRef<HTMLTableElement | null>(null);
     useEffect(() => {
         const table = $(tableRef.current).DataTable({
@@ -22,7 +22,7 @@ const Investments: NextPage = ({ token, result }: any) => {
 
     return (
         <>
-            <AccountLayout menukey="dashboard" subpage={false}>
+            <AccountLayout userinfo={profile} menukey="dashboard" subpage={false}>
                 <div className="section-title three">
                     <h2>
                         Investments
@@ -49,14 +49,18 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             Router.push('/auth/login');
         }
     }
-    // const invest;
-    const domain = process.env.DOMAIN || 'http://localhost:3000';
-    const response = await fetch(`${domain}/api/investments/${token}/list`);
-    const result = await response.json();
+    // const investments;
+    const investments = await fetch(`${process.env.DOMAIN}/api/investments/${token}/list`);
+    const investmentlist = await investments.json();
+
+    const response = await fetch(`${process.env.DOMAIN}/api/users/${token}/info`);
+    const userInfo = await response.json();
+
     http: return {
         props: {
             token: token,
-            result: result.data,
+            result: investmentlist.data,
+            profile: userInfo,
         },
     };
 };
