@@ -76,7 +76,7 @@ function NavigationBar({ menukey }: menuProps) {
                                     </li>
                                 </ul>
                                 <div className="side-nav">
-                                    <Link href="/accounts">
+                                    <Link href="/auth/login">
                                         <a className="consultant-btn">SHQ Login</a>
                                     </Link>
                                 </div>

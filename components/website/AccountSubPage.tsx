@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import { LoggedInUser } from '../../interfaces';
-var money = require('currency-formatter');
+import { ApiUser, LoggedInUser, TUser } from '../../interfaces';
+let money = require('currency-formatter');
 
 interface pageProps {
-    userProfile: LoggedInUser;
+    userProfile: ApiUser;
     subpage?: boolean;
 }
 
@@ -14,7 +14,7 @@ function SubPage({ userProfile, subpage }: pageProps) {
                 <div className="container">
                     {subpage && (
                         <div className="section-title three">
-                            <h2>{`${userProfile.firstname} ${userProfile.lastname}`}</h2>
+                            <h2>{`${userProfile?.firstname} ${userProfile?.lastname}`}</h2>
                             <span className="sub-title">Account Balance</span>
                             <h2>
                                 <span className="text-green-600">

@@ -1,11 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "../app/slices/counterSlice";
-import userReducer from "../app/slices/userSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import tokenReducer from './slices/tokenSlice';
+import profileReducer from './slices/profileSlice';
+import userReducer from './slices/userSlice';
 
 export const store = configureStore({
     reducer: {
-        counter: counterReducer,
-        user: userReducer,
+        itoken: tokenReducer,
+        iprofile: profileReducer,
+        iuser: userReducer,
     },
 });
 
