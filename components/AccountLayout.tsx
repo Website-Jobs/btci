@@ -6,7 +6,7 @@ import AccountSubPage from './website/AccountSubPage';
 import CopyRight from './website/CopyRight';
 import FooterArea from './website/FooterArea';
 import HeaderArea from './website/HeaderArea';
-import NavigationBar from './website/ProfileNavigationBar';
+import ProfileNavigationBar from './website/ProfileNavigationBar';
 
 interface Props {
     userinfo: ApiUser;
@@ -26,7 +26,7 @@ function AccountLayout({ userinfo, menukey, children, subpage }: Props) {
                 <title>{` ${userinfo.firstname} ${userinfo.lastname}`} | SHQBTCI</title>
             </Head>
             <HeaderArea />
-            <NavigationBar menukey={menukey} />
+            <ProfileNavigationBar menukey={menukey} />
             <AccountSubPage userProfile={userinfo} subpage={subpage} />
             {children}
             <FooterArea />

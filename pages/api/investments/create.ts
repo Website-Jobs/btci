@@ -14,14 +14,13 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         POST: async (req: NextApiRequest, res: NextApiResponse) => {
             const { token } = req.cookies;
             const { packageid, amount, starts, ends } = req.body;
-
             const { Accounts } = await dbCon();
-            const existingUser = await Accounts.updateOne(
+            const updateIt = await Accounts.updateOne(
                 { _id: token },
                 {
                     $push: {
                         investments: {
-                            ckageid: packageid,
+                            packageid: packageid,
                             amount: amount,
                             starts: starts,
                             expires: ends,
@@ -29,12 +28,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                     },
                 }
             );
-            if (existingUser) {
-            }
-            if (!existingUser) {
+
+            if (!updateIt) {
                 res.status(404).json({ status: 0, err: 'Error creating Investment' });
             } else {
-                res.status(200).json({ status: 1, data: existingUser });
+                res.status(200).json({ status: 1, data: updateIt });
             }
         },
     };

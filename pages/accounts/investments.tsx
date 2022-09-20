@@ -23,7 +23,8 @@ const Investments: NextPage = ({ token, result, profile }: any) => {
                         <table id="myDataTable" className="display w-full m-[20px] table" width="100%" ref={tableRef}>
                             <thead>
                                 <tr>
-                                    <th scope="col">INVESTMENT ID</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">PACKAGE</th>
                                     <th scope="col">AMOUNT</th>
                                     <th scope="col">START DATE</th>
                                     <th scope="col">EXPIRE DATE</th>
@@ -35,6 +36,7 @@ const Investments: NextPage = ({ token, result, profile }: any) => {
                                     <>
                                         <tr>
                                             <th scope="row">{item._id}</th>
+                                            <td>{item.packageid}</td>
                                             <td>{item.amount}</td>
                                             <td>{item.starts}</td>
                                             <td>{item.expires}</td>

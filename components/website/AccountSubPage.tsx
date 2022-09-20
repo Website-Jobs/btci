@@ -68,8 +68,8 @@ function SubPage({ userProfile, subpage }: pageProps) {
                                 <a className="nav-link">
                                     <button className="w-full h-full">
                                         <div className="provide-nav">
-                                            <i className="flaticon-consultation" />
-                                            <h3>Consultancy</h3>
+                                            <i className="flaticon-loan-1" />
+                                            <h3>Transactions</h3>
                                         </div>
                                     </button>
                                 </a>
@@ -80,8 +80,8 @@ function SubPage({ userProfile, subpage }: pageProps) {
                                 <a className="nav-link">
                                     <button className="w-full h-full">
                                         <div className="provide-nav">
-                                            <i className="flaticon-loan-1" />
-                                            <h3>House Loans</h3>
+                                            <i className="flaticon-consultation" />
+                                            <h3>Deposits</h3>
                                         </div>
                                     </button>
                                 </a>
@@ -93,7 +93,7 @@ function SubPage({ userProfile, subpage }: pageProps) {
                                     <button className="w-full h-full">
                                         <div className="provide-nav">
                                             <i className="flaticon-investment" />
-                                            <h3>Withdrawal Request</h3>
+                                            <h3>Withdrawals</h3>
                                         </div>
                                     </button>
                                 </a>

@@ -82,7 +82,7 @@ const Invest: NextPage = ({ lists, profile }: any) => {
                                                             >
                                                                 <option value="">Select Package</option>
                                                                 {lists.map((listed: any, i: any) => (
-                                                                    <option value={listed._id} key={i}>
+                                                                    <option value={listed.name} key={i}>
                                                                         {listed.name}
                                                                     </option>
                                                                 ))}
