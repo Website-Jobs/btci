@@ -19,9 +19,6 @@ function AccountLayout({ userinfo, menukey, children, subpage }: Props) {
     return (
         <>
             <Head>
-                <title>{`${userinfo.firstname} ${userinfo.lastname}`} | SHQBTCI</title>
-            </Head>
-            <Head>
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon" />
