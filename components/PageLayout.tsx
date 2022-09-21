@@ -1,10 +1,10 @@
-import Head from "next/head";
-import Script from "next/script";
-import { ReactNode } from "react";
-import CopyRight from "./website/CopyRight";
-import FooterArea from "./website/FooterArea";
-import HeaderArea from "./website/HeaderArea";
-import NavigationBar from "./website/NavigationBar";
+import Head from 'next/head';
+import Script from 'next/script';
+import { ReactNode } from 'react';
+import CopyRight from './website/CopyRight';
+import FooterArea from './website/FooterArea';
+import HeaderArea from './website/HeaderArea';
+import NavigationBar from './website/NavigationBar';
 
 interface Props {
     menukey: string;

@@ -7,14 +7,14 @@ import Link from 'next/link';
 const $ = require('jquery');
 $.DataTable = require('datatables.net');
 
-const Investments: NextPage = ({ token, result, profile }: any) => {
+const Deposits: NextPage = ({ token, deposits, profile }: any) => {
     const tableRef = useRef<HTMLTableElement | null>(null);
     return (
         <>
             <AccountLayout userinfo={profile} menukey="dashboard" subpage={false}>
                 <div className="section-title three">
                     <h2>
-                        Investments
+                        All Deposits
                         <hr />
                     </h2>
                 </div>
@@ -32,7 +32,7 @@ const Investments: NextPage = ({ token, result, profile }: any) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {result.map((item: any, i: any) => (
+                                {/* {transactions.map((item: any, i: any) => (
                                     <>
                                         <tr>
                                             <th scope="row">{item._id}</th>
@@ -47,7 +47,7 @@ const Investments: NextPage = ({ token, result, profile }: any) => {
                                             </td>
                                         </tr>
                                     </>
-                                ))}
+                                ))} */}
                             </tbody>
                         </table>
                     </div>
@@ -67,9 +67,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             Router.push('/auth/login');
         }
     }
-    // const investments;
-    const investments = await fetch(`${process.env.DOMAIN}/api/investments/${token}/list`);
-    const investmentlist = await investments.json();
+    // // const investments;
+    // const investments = await fetch(`${process.env.DOMAIN}/api/investments/${token}/list`);
+    // const investmentlist = await investments.json();
 
     const response = await fetch(`${process.env.DOMAIN}/api/users/${token}/info`);
     const userInfo = await response.json();
@@ -77,10 +77,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     http: return {
         props: {
             token: token,
-            result: investmentlist.data,
+            deposits: {},
             profile: userInfo,
         },
     };
 };
 
-export default Investments;
+export default Deposits;
