@@ -18,10 +18,9 @@ function SubPage({ userProfile, subpage }: pageProps) {
                             <span className="sub-title">Account Balance</span>
                             <h2>
                                 <span className="text-green-600">
-                                    {money.format(userProfile.account.usd, { code: 'USD' })}
+                                    <span className="text-orange-700">{`${userProfile.account.btc} BTC`}</span>
                                 </span>
-                                &nbsp;~&nbsp;
-                                <span className="text-orange-700">{`${userProfile.account.btc} BTC`}</span>
+                                &nbsp;~&nbsp; {money.format(userProfile.account.usd, { code: 'USD' })}
                             </h2>
                         </div>
                     )}
@@ -64,7 +63,7 @@ function SubPage({ userProfile, subpage }: pageProps) {
                             </Link>
                         </li>{' '}
                         <li className="nav-item">
-                            <Link href="/accounts">
+                            <Link href="/accounts/transactions">
                                 <a className="nav-link">
                                     <button className="w-full h-full">
                                         <div className="provide-nav">
@@ -76,7 +75,7 @@ function SubPage({ userProfile, subpage }: pageProps) {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link href="/accounts">
+                            <Link href="/accounts/deposits">
                                 <a className="nav-link">
                                     <button className="w-full h-full">
                                         <div className="provide-nav">
@@ -88,7 +87,7 @@ function SubPage({ userProfile, subpage }: pageProps) {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link href="/accounts">
+                            <Link href="/accounts/withdrawals">
                                 <a className="nav-link">
                                     <button className="w-full h-full">
                                         <div className="provide-nav">
