@@ -52,6 +52,7 @@ export interface ApiUser {
     email: string;
     firstname: string;
     lastname: string;
+    role: Array<string>;
     account: {
         usd: Number;
         btc: string;
