@@ -16,6 +16,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                 email: result.email,
                 firstname: result.firstname,
                 lastname: result.lastname,
+                role: result.role,
                 account: result.account,
                 lastseen: result.lastseen,
             });

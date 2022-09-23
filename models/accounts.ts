@@ -35,6 +35,10 @@ const accountsScheme = new mongoose.Schema(
                 expires: String,
             },
         ],
+        role: {
+            type: Array,
+            default: [],
+        },
         lastseen: {
             type: Date,
             default: Date.now,
