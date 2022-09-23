@@ -45,10 +45,10 @@ const Accounts: NextPage = () => {
     return (
         <>
             <Head>
-                <title>Sign Up | SHQ Bitcoin Investors</title>
+                <title>Sign In | SHQ Bitcoin Investors</title>
             </Head>
             <PageLayout menukey="apply">
-                <SubPage title="Sign Up" menutitle="Sign Up" />
+                <SubPage title="Sign In" menutitle="Sign In" />
                 <div className="user-form-area ptb-100 bg-gray-300">
                     <div className="container">
                         <div className="row">

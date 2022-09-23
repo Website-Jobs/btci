@@ -7,7 +7,7 @@ import '../public/assets/css/owl.theme.default.min.css';
 import '../public/assets/css/animate.min.css';
 import '../public/assets/css/odometer.min.css';
 import '../public/assets/css/nice-select.min.css';
-
+import 'react-toastify/dist/ReactToastify.css';
 import '../public/assets/css/magnific-popup.min.css';
 import '../public/assets/css/style.css';
 import '../public/assets/css/responsive.css';

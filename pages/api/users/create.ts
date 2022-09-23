@@ -20,7 +20,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                 firstname: firstname,
                 lastname: lastname,
                 password: hashesPassword,
-                role: ['user'],
             }).catch(catcher);
             if (!created) {
                 res.status(404).json({ status: 0, err: 'Error creating account' });

@@ -7,16 +7,16 @@ const accountsScheme = new mongoose.Schema(
             type: String,
             unique: true,
         },
-        password: String,
-        firstname: String,
-        lastname: String,
-        location: {
-            address: String,
-            city: String,
-            state: String,
-            country: String,
-            zipcode: String,
+        password: { type: String, default: '' },
+        firstname: { type: String, default: '' },
+        lastname: { type: String, default: '' },
+        mobile: { type: String, default: '' },
+        avatar: {
+            type: String,
+            default: '/img/instagram6.jpg',
         },
+        address: { type: String, default: '' },
+        country: { type: String, default: '' },
         account: {
             btc: {
                 type: String,
@@ -37,7 +37,7 @@ const accountsScheme = new mongoose.Schema(
         ],
         role: {
             type: Array,
-            default: [],
+            default: ['user'],
         },
         lastseen: {
             type: Date,

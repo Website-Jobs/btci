@@ -25,10 +25,14 @@ export interface TUser {
 }
 
 export interface WebUser {
+    token?: string;
     firstname?: string;
     lastname?: string;
-    email: string;
-    password: string;
+    email?: string;
+    mobile?: string;
+    address?: string;
+    country?: string;
+    password?: string;
 }
 
 export interface IUser {
