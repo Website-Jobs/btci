@@ -11,14 +11,21 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             const { Accounts } = await dbCon();
             const result = await Accounts.findOne({ _id: token }).catch(catcher);
             res.status(200).json({
-                status: true,
+                status: 1,
                 accid: result._id,
                 email: result.email,
+                mobile: result.mobile,
                 firstname: result.firstname,
                 lastname: result.lastname,
                 role: result.role,
+                address: result.address,
+                country: result.country,
+                avatar: result.avatar,
                 account: result.account,
+                btc: result.account.btc,
+                usd: result.account.usd,
                 lastseen: result.lastseen,
+                active: result.active,
             });
         },
     };

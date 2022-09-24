@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 mongoose.Promise = global.Promise;
 
 const accountsScheme = new mongoose.Schema(
@@ -42,6 +42,10 @@ const accountsScheme = new mongoose.Schema(
         lastseen: {
             type: Date,
             default: Date.now,
+        },
+        active: {
+            type: Boolean,
+            default: false,
         },
     },
     { timestamps: true }

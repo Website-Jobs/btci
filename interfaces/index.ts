@@ -33,6 +33,8 @@ export interface WebUser {
     address?: string;
     country?: string;
     password?: string;
+    usd?: Number;
+    btc?: string;
 }
 
 export interface IUser {

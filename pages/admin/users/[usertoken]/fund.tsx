@@ -19,6 +19,8 @@ const Index: NextPage = ({ user, profile }: any) => {
         mobile: user.mobile,
         address: user.address,
         country: user.country,
+        btc: user.btc,
+        usd: user.usd,
     };
 
     const [registerError, setRegisterError] = useState('');
@@ -55,7 +57,7 @@ const Index: NextPage = ({ user, profile }: any) => {
             <AccountLayout userinfo={profile} menukey="dashboard" subpage={true}>
                 <div className="section-title three">
                     <h2>
-                        Profile For :{' '}
+                        Add BTC/USD Fund to :{' '}
                         <strong className="text-green-500">
                             {user.firstname} {user.lastname}
                         </strong>
@@ -65,18 +67,8 @@ const Index: NextPage = ({ user, profile }: any) => {
                 <div className="container">
                     <div className="m-[30px]">
                         <div className="row">
-                            <div className="col-md-3">
-                                <div className="my-5">
-                                    <Image
-                                        className="border-red-500 border"
-                                        width={200}
-                                        height={200}
-                                        src={user.avatar}
-                                        alt={user.firstname}
-                                    />
-                                </div>
-                            </div>
-                            <div className="col-md-6">
+                            <div className="col-md-4"></div>
+                            <div className="col-md-4">
                                 <div className="col-md-12 w-full text-center my-4">
                                     <IsWorking loading={busy} />{' '}
                                     <span className="text-red-600 text-lg">{registerError}</span>
@@ -89,18 +81,18 @@ const Index: NextPage = ({ user, profile }: any) => {
                                         width="100%"
                                     >
                                         <tr>
-                                            <th scope="col">FIRST NAME</th>
+                                            <th scope="col">BITCOIN (BTC)</th>
                                             <td scope="col">
                                                 <div className="form-group mt-2">
                                                     <input
-                                                        type="text"
-                                                        name="firstname"
-                                                        id="firstname"
+                                                        type="number"
+                                                        name="btc"
+                                                        id="btc"
                                                         required={true}
                                                         className="form-control text-lg"
-                                                        value={regUser.firstname}
+                                                        value={regUser.btc as string}
                                                         onChange={(e) =>
-                                                            setRegUser({ ...regUser, firstname: e.target.value })
+                                                            setRegUser({ ...regUser, btc: e.target.value })
                                                         }
                                                     />
                                                 </div>
@@ -108,95 +100,21 @@ const Index: NextPage = ({ user, profile }: any) => {
                                         </tr>
 
                                         <tr>
-                                            <th scope="col">LAST NAME</th>
+                                            <th scope="col">USDT ($USD)</th>
                                             <td scope="col">
                                                 <div className="form-group mt-2">
                                                     <input
-                                                        type="text"
+                                                        type="number"
                                                         name="lastname"
                                                         id="lastname"
                                                         required={true}
                                                         className="form-control text-lg"
-                                                        value={regUser.lastname}
+                                                        value={regUser.usd as number}
                                                         onChange={(e) =>
-                                                            setRegUser({ ...regUser, lastname: e.target.value })
-                                                        }
-                                                    />
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <th scope="col">EMAIL ADDRESS</th>
-                                            <td scope="col">
-                                                <div className="form-group mt-2">
-                                                    <input
-                                                        type="email"
-                                                        name="email"
-                                                        id="email"
-                                                        required={true}
-                                                        className="form-control text-lg"
-                                                        value={regUser.email}
-                                                        onChange={(e) =>
-                                                            setRegUser({ ...regUser, email: e.target.value })
-                                                        }
-                                                    />
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <th scope="col">TELEPHONE</th>
-                                            <td scope="col">
-                                                <div className="form-group mt-2">
-                                                    <input
-                                                        type="mobile"
-                                                        name="mobile"
-                                                        id="mobile"
-                                                        required={true}
-                                                        className="form-control text-lg"
-                                                        value={regUser.mobile}
-                                                        onChange={(e) =>
-                                                            setRegUser({ ...regUser, mobile: e.target.value })
-                                                        }
-                                                    />
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <th scope="col">Address</th>
-                                            <td scope="col">
-                                                <div className="form-group mt-2">
-                                                    <textarea
-                                                        className="form-control text-lg"
-                                                        name="address"
-                                                        id="address"
-                                                        cols={30}
-                                                        rows={5}
-                                                        onChange={(e) =>
-                                                            setRegUser({ ...regUser, address: e.target.value })
-                                                        }
-                                                    >
-                                                        {regUser.address}
-                                                    </textarea>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <th scope="col">Country</th>
-                                            <td scope="col">
-                                                <div className="form-group mt-2">
-                                                    <input
-                                                        type="country"
-                                                        name="country"
-                                                        id="country"
-                                                        required={true}
-                                                        className="form-control text-lg"
-                                                        value={regUser.country}
-                                                        onChange={(e) =>
-                                                            setRegUser({ ...regUser, country: e.target.value })
+                                                            setRegUser({
+                                                                ...regUser,
+                                                                usd: parseInt(e.target.value),
+                                                            })
                                                         }
                                                     />
                                                 </div>
@@ -220,7 +138,7 @@ const Index: NextPage = ({ user, profile }: any) => {
                                     </table>
                                 </form>
                             </div>
-                            <div className="col-md-3"></div>
+                            <div className="col-md-4"></div>
                         </div>
                     </div>
                 </div>
