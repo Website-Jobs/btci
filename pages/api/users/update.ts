@@ -11,26 +11,26 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             res.status(200).json({ status: false, err: 'Only POST Method is allowed' });
         },
         POST: async (req: NextApiRequest, res: NextApiResponse) => {
-            const { token } = req.body;
+            const { token, firstname, lastname, email, mobile, address, country } = req.body;
+
+            console.log(req.body);
+
             const { Accounts } = await dbCon();
-            const account = await Accounts.findOne({ _id: token }).catch(catcher);
+            const account = await Accounts.updateOne(
+                { _id: token },
+                {
+                    firstname: firstname,
+                    lastname: lastname,
+                    email: email,
+                    mobile: mobile,
+                    address: address,
+                    country: country,
+                }
+            ).catch(catcher);
             if (account) {
                 res.status(200).json({
                     status: 1,
-                    accid: account._id,
-                    email: account.email,
-                    mobile: account.mobile,
-                    firstname: account.firstname,
-                    lastname: account.lastname,
-                    role: account.role,
-                    address: account.address,
-                    country: account.country,
-                    avatar: account.avatar,
-                    account: account.account,
-                    btc: account.account.btc,
-                    usd: account.account.usd,
-                    lastseen: account.lastseen,
-                    active: account.active,
+                    data: account,
                 });
             } else {
                 res.status(404).json({ status: 0, err: 'Account not found' });
