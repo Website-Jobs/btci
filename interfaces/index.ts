@@ -59,10 +59,8 @@ export interface ApiUser {
     firstname: string;
     lastname: string;
     role: Array<string>;
-    account: {
-        usd: Number;
-        btc: string;
-    };
+    usd: Number;
+    btc: string;
     lastseen?: Date;
 }
 
@@ -71,10 +69,8 @@ export interface ILoggedInUser {
     email?: string;
     firstname?: string;
     lastname?: string;
-    account?: {
-        usd?: Number;
-        btc?: string;
-    };
+    usd?: Number;
+    btc?: string;
 }
 
 export interface LoggedInUser {
@@ -82,10 +78,8 @@ export interface LoggedInUser {
     email?: string;
     firstname?: string;
     lastname?: string;
-    account?: {
-        usd?: Number;
-        btc?: string;
-    };
+    usd?: Number;
+    btc?: string;
     lastseen?: Date;
 }
 

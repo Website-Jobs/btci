@@ -4,47 +4,56 @@ import AccountLayout from '../../../../components/AccountLayout';
 import nextCookie from 'next-cookies';
 import Router, { useRouter } from 'next/router';
 import IsWorking from '../../../../components/Working';
-import Image from 'next/image';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import React, { useState } from 'react';
-import { WebUser } from '../../../../interfaces';
 
-const Index: NextPage = ({ user, profile }: any) => {
+const Index: NextPage = ({ token, user, profile, usdRate }: any) => {
     const router = useRouter();
-    const newUser: WebUser = {
-        token: user.accid,
-        firstname: user.firstname,
-        lastname: user.lastname,
-        email: user.email,
-        mobile: user.mobile,
-        address: user.address,
-        country: user.country,
-        btc: user.btc,
-        usd: user.usd,
+    const { usertoken } = router.query;
+
+    const newFund: any = {
+        btc: 0,
+        usd: 0,
     };
 
-    const [registerError, setRegisterError] = useState('');
-    const [regUser, setRegUser] = useState(newUser);
+    const newEditor = {
+        inBTC: false,
+        inUSD: false,
+    };
+
+    const [editor, setEditor] = useState(newEditor);
+
+    const [fundError, setFundError] = useState('');
+    const [fund, setFund] = useState(newFund);
     const [busy, setBusy] = useState(false);
 
-    const doProfileUpdate = async (event: React.SyntheticEvent) => {
+    const covertUSDToBTC = (usd: any) => {
+        const _btc = usd / usdRate;
+        setFund({
+            ...fund,
+            btc: _btc,
+            usd: usd,
+        });
+    };
+
+    const doFundUpdate = async (event: React.SyntheticEvent) => {
         event.preventDefault();
-        setBusy(false);
-        setRegisterError('');
+        setBusy(true);
+        setFundError('');
         try {
-            const response = await fetch('/api/users/update', {
+            const response = await fetch(`/api/users/${usertoken}/fund`, {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(regUser),
+                body: JSON.stringify(fund),
             });
             if (response.status == 200) {
                 const data = await response.json();
                 router.push('/admin');
             } else {
-                setRegisterError('Updating user failed.');
+                setFundError('Updating user failed.');
             }
         } catch (error) {
-            setRegisterError('Updating user failed.');
+            setFundError('Updating user failed.');
         } finally {
             setBusy(false);
         }
@@ -71,15 +80,34 @@ const Index: NextPage = ({ user, profile }: any) => {
                             <div className="col-md-4">
                                 <div className="col-md-12 w-full text-center my-4">
                                     <IsWorking loading={busy} />{' '}
-                                    <span className="text-red-600 text-lg">{registerError}</span>
+                                    <span className="text-red-600 text-lg">{fundError}</span>
                                 </div>
-                                <form id="updateProfile" onSubmit={doProfileUpdate} method="post">
+                                <form id="updateProfile" onSubmit={doFundUpdate} method="post">
                                     <input type="hidden" name="token" id="token" value={user._id} />
+
                                     <table
                                         id="myDataTable"
                                         className="display w-full m-[20px] table table-responsive table-altered"
                                         width="100%"
                                     >
+                                        <tr>
+                                            <th scope="col">USDT ($USD)</th>
+                                            <td scope="col">
+                                                <span>1.0 BTC = ${usdRate}</span>
+                                                <div className="form-group mt-2">
+                                                    <input
+                                                        type="number"
+                                                        name="usdt"
+                                                        id="usdt"
+                                                        min={0}
+                                                        required={true}
+                                                        className="form-control text-lg"
+                                                        value={fund.usd as number}
+                                                        onChange={(e) => covertUSDToBTC(e.target.value)}
+                                                    />
+                                                </div>
+                                            </td>
+                                        </tr>
                                         <tr>
                                             <th scope="col">BITCOIN (BTC)</th>
                                             <td scope="col">
@@ -89,33 +117,9 @@ const Index: NextPage = ({ user, profile }: any) => {
                                                         name="btc"
                                                         id="btc"
                                                         required={true}
+                                                        readOnly={true}
                                                         className="form-control text-lg"
-                                                        value={regUser.btc as string}
-                                                        onChange={(e) =>
-                                                            setRegUser({ ...regUser, btc: e.target.value })
-                                                        }
-                                                    />
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <th scope="col">USDT ($USD)</th>
-                                            <td scope="col">
-                                                <div className="form-group mt-2">
-                                                    <input
-                                                        type="number"
-                                                        name="lastname"
-                                                        id="lastname"
-                                                        required={true}
-                                                        className="form-control text-lg"
-                                                        value={regUser.usd as number}
-                                                        onChange={(e) =>
-                                                            setRegUser({
-                                                                ...regUser,
-                                                                usd: parseInt(e.target.value),
-                                                            })
-                                                        }
+                                                        value={fund.btc as string}
                                                     />
                                                 </div>
                                             </td>
@@ -163,13 +167,22 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const response = await fetch(`${domain}/api/users/${token}/info`);
     const result = await response.json();
 
+    const ratesResult = await fetch('https://bitpay.com/api/rates');
+    const rates = await ratesResult.json();
+    let usdRate = 0;
+    rates.forEach((rate: any) => {
+        if (rate.code == 'USD') usdRate = rate.rate;
+        return;
+    });
     const userResult = await fetch(`${domain}/api/users/${usertoken}/info`);
     const user = await userResult.json();
 
     http: return {
         props: {
+            token: token,
             profile: result,
             user: user,
+            usdRate: usdRate,
         },
     };
 };

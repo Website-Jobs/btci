@@ -51,6 +51,11 @@ const Index: NextPage = ({ users, profile }: any) => {
         <>
             <AccountLayout userinfo={profile} menukey="dashboard" subpage={true}>
                 <div className="section-title three">
+                    <div className="mt-3 text-center">
+                        <Link href={`/admin/create`}>
+                            <a className="btn btn-sm btn-info text-white">Create User</a>
+                        </Link>
+                    </div>
                     <h2>
                         All Accounts & Members
                         <hr />
@@ -70,8 +75,8 @@ const Index: NextPage = ({ users, profile }: any) => {
                                     <th scope="col">NAME</th>
                                     <th scope="col">EMAIL</th>
                                     <th scope="col">MOBILE</th>
-                                    <th scope="col">REGISTERED</th>
-                                    <th scope="col">LAST SEEN</th>
+                                    <th scope="col">USD</th>
+                                    <th scope="col">BTC</th>
                                     <th scope="col">-</th>
                                 </tr>
                             </thead>
@@ -90,8 +95,8 @@ const Index: NextPage = ({ users, profile }: any) => {
                                             </td>
                                             <td>{item.email}</td>
                                             <td>{item.mobile}</td>
-                                            <td>{item.updatedAt}</td>
-                                            <td>{item.createdAt}</td>
+                                            <td>{item.usd}</td>
+                                            <td>{item.btc}</td>
                                             <td>
                                                 {item.active == true ? (
                                                     <>
