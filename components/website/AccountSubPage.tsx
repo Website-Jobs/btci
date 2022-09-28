@@ -40,7 +40,7 @@ function SubPage({ userProfile, subpage }: pageProps) {
                                     </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link href="/accounts/invest">
+                                    <Link href="/admin/packages">
                                         <a className="nav-link">
                                             <button className="w-full h-full">
                                                 <div className="provide-nav">
@@ -100,9 +100,9 @@ function SubPage({ userProfile, subpage }: pageProps) {
                                     <span className="sub-title">Account Balance {userProfile.role[0]}</span>
                                     <h2>
                                         <span className="text-green-600">
-                                            <span className="text-orange-700">{`${userProfile.account.btc} BTC`}</span>
+                                            <span className="text-orange-700">{`${userProfile.btc} BTC`}</span>
                                         </span>
-                                        &nbsp;~&nbsp; {money.format(userProfile.account.usd, { code: 'USD' })}
+                                        &nbsp;~&nbsp; {money.format(userProfile.usd, { code: 'USD' })}
                                     </h2>
                                 </div>
                             )}

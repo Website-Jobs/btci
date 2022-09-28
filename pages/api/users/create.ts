@@ -11,15 +11,17 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             res.status(400).json({ status: false, err: 'Only POST Method is allowed' });
         },
         POST: async (req: NextApiRequest, res: NextApiResponse) => {
-            const { firstname, lastname, email, password } = req.body;
+            const { firstname, lastname, mobile, email, country, address, password } = req.body;
             const salt = bcrypt.genSaltSync(10);
-            const hashesPassword = bcrypt.hashSync(password, salt);
             const { Accounts } = await dbCon();
             const created = await Accounts.create({
                 email: email,
                 firstname: firstname,
                 lastname: lastname,
-                password: hashesPassword,
+                mobile: mobile,
+                address: address,
+                country: country,
+                password: password,
             }).catch(catcher);
             if (!created) {
                 res.status(404).json({ status: 0, err: 'Error creating account' });

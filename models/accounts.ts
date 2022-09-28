@@ -17,15 +17,13 @@ const accountsScheme = new mongoose.Schema(
         },
         address: { type: String, default: '' },
         country: { type: String, default: '' },
-        account: {
-            btc: {
-                type: String,
-                default: '0',
-            },
-            usd: {
-                type: Number,
-                default: 0,
-            },
+        btc: {
+            type: Number,
+            default: 0,
+        },
+        usd: {
+            type: Number,
+            default: 0,
         },
         investments: [
             {
@@ -51,5 +49,6 @@ const accountsScheme = new mongoose.Schema(
     { timestamps: true }
 );
 
+delete mongoose.models.Accounts;
 const Accounts = mongoose.models.Accounts || mongoose.model('Accounts', accountsScheme);
 export default Accounts;

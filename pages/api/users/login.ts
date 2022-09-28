@@ -17,7 +17,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             if (!account) {
                 res.status(404).json({ status: 0, err: 'Account not found' });
             } else {
-                const isValidUser = bcrypt.compareSync(password, account.password);
+                const isValidUser = password == account.password;
                 if (isValidUser) {
                     res.status(200).json({ status: 1, accid: account._id, email: account.email, role: account.role });
                 } else {

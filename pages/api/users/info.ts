@@ -26,9 +26,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                     address: account.address,
                     country: account.country,
                     avatar: account.avatar,
-                    account: account.account,
-                    btc: account.account.btc,
-                    usd: account.account.usd,
+                    btc: account.btc,
+                    usd: account.usd,
                     lastseen: account.lastseen,
                     active: account.active,
                 });

@@ -1,16 +1,27 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { dbCon } from '../../../models';
 import { ResponseFunctions } from '../../../interfaces';
-const bcrypt = require('bcryptjs');
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const method: keyof ResponseFunctions = req.method as keyof ResponseFunctions;
     const catcher = (error: Error) => res.status(400).json({ status: 0, error: error });
     const handleCase: ResponseFunctions = {
-        GET: async (req: NextApiRequest, res: NextApiResponse) => {
+        POST: async (req: NextApiRequest, res: NextApiResponse) => {
+            const { name, description, minAmount, maxAmount } = req.body;
+
             const { Packages } = await dbCon();
-            const listed = await Packages.find({}).catch(catcher);
-            res.status(200).json({ status: true, data: listed });
+            const created = await Packages.create({
+                name: name,
+                description: description,
+                min: minAmount,
+                max: maxAmount,
+            }).catch(catcher);
+
+            if (!created) {
+                res.status(404).json({ status: 0, err: 'Error creating account' });
+            } else {
+                res.status(200).json({ status: 1, packageId: created._id });
+            }
         },
     };
 
