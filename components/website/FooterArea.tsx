@@ -1,5 +1,5 @@
-import Link from "next/link";
-import Image from "next/image";
+import Link from 'next/link';
+import Image from 'next/image';
 
 function FooterArea() {
     return (
@@ -21,7 +21,7 @@ function FooterArea() {
                                     </Link>
                                     <p className="my-3">
                                         Since 2013, SHQBTC Investors has invested in digital assets and blockchain
-                                        companies, providing investors with the full spectrum of exposure to the space.{" "}
+                                        companies, providing investors with the full spectrum of exposure to the space.{' '}
                                     </p>
                                     <ul>
                                         <li>
@@ -37,7 +37,7 @@ function FooterArea() {
                                         <li>
                                             <i className="bx bx-current-location" />
                                             <span>Address:</span>
-                                            <a href="#">4578 Marmora Road, UK</a>
+                                            <a href="#">Plot 8 , Rue de geneva 109/80 1258 thonex switzerland.</a>
                                         </li>
                                     </ul>
                                 </div>

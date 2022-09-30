@@ -65,17 +65,7 @@ const Index: NextPage = ({ user, profile }: any) => {
                 <div className="container">
                     <div className="m-[30px]">
                         <div className="row">
-                            <div className="col-md-3">
-                                <div className="my-5">
-                                    <Image
-                                        className="border-red-500 border"
-                                        width={200}
-                                        height={200}
-                                        src={user.avatar}
-                                        alt={user.firstname}
-                                    />
-                                </div>
-                            </div>
+                            <div className="col-md-3"></div>
                             <div className="col-md-6">
                                 <div className="col-md-12 w-full text-center my-4">
                                     <IsWorking loading={busy} />{' '}
