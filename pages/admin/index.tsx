@@ -6,7 +6,6 @@ import Router, { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useState } from 'react';
 import Busy from '../../components/Busy';
-import { userError } from '../../app/slices/profileSlice';
 
 const Index: NextPage = ({ users, profile }: any) => {
     //

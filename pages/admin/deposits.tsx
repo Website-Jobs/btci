@@ -7,14 +7,14 @@ import Link from 'next/link';
 const $ = require('jquery');
 $.DataTable = require('datatables.net');
 
-const Deposits: NextPage = ({ token, deposits, profile }: any) => {
+const Investments: NextPage = ({ token, result, profile }: any) => {
     const tableRef = useRef<HTMLTableElement | null>(null);
     return (
         <>
             <AccountLayout userinfo={profile} menukey="dashboard" subpage={false}>
                 <div className="section-title three">
                     <h2>
-                        All Deposits
+                        Deposits
                         <hr />
                     </h2>
                 </div>
@@ -24,30 +24,18 @@ const Deposits: NextPage = ({ token, deposits, profile }: any) => {
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">PACKAGE</th>
                                     <th scope="col">AMOUNT</th>
-                                    <th scope="col">START DATE</th>
-                                    <th scope="col">EXPIRE DATE</th>
-                                    <th scope="col">-</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* {transactions.map((item: any, i: any) => (
+                                {result.map((item: any, i: any) => (
                                     <>
                                         <tr>
                                             <th scope="row">{item._id}</th>
-                                            <td>{item.packageid}</td>
                                             <td>{item.amount}</td>
-                                            <td>{item.starts}</td>
-                                            <td>{item.expires}</td>
-                                            <td>
-                                                <Link href="#" key={i}>
-                                                    <a className="btn btn-sm btn-success text-white">Withdraw</a>
-                                                </Link>
-                                            </td>
                                         </tr>
                                     </>
-                                ))} */}
+                                ))}
                             </tbody>
                         </table>
                     </div>
@@ -67,9 +55,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             Router.push('/auth/login');
         }
     }
-    // // const investments;
-    // const investments = await fetch(`${process.env.DOMAIN}/api/investments/${token}/list`);
-    // const investmentlist = await investments.json();
+    // const investments;
+    const deposits = await fetch(`${process.env.DOMAIN}/api/deposits/${token}/list`);
+    const depositsList = await deposits.json();
 
     const response = await fetch(`${process.env.DOMAIN}/api/users/${token}/info`);
     const userInfo = await response.json();
@@ -77,10 +65,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     http: return {
         props: {
             token: token,
-            deposits: {},
+            result: depositsList.data,
             profile: userInfo,
         },
     };
 };
 
-export default Deposits;
+export default Investments;

@@ -33,6 +33,11 @@ const accountsScheme = new mongoose.Schema(
                 expires: String,
             },
         ],
+        deposits: [
+            {
+                amount: Number,
+            },
+        ],
         role: {
             type: Array,
             default: ['user'],
@@ -49,5 +54,6 @@ const accountsScheme = new mongoose.Schema(
     { timestamps: true }
 );
 
+delete mongoose.models.Accounts;
 const Accounts = mongoose.models.Accounts || mongoose.model('Accounts', accountsScheme);
 export default Accounts;
