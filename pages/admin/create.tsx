@@ -4,22 +4,13 @@ import AccountLayout from '../../components/AccountLayout';
 import nextCookie from 'next-cookies';
 import Router, { useRouter } from 'next/router';
 import IsWorking from '../../components/Working';
-import Image from 'next/image';
 import { ToastContainer, toast } from 'react-toastify';
 import React, { useState } from 'react';
 import { WebUser } from '../../interfaces';
 
-const Index: NextPage = ({ user, profile }: any) => {
+const Index: NextPage = ({ profile }: any) => {
     const router = useRouter();
-    const newUser: WebUser = {
-        token: user.accid,
-        firstname: user.firstname,
-        lastname: user.lastname,
-        email: user.email,
-        mobile: user.mobile,
-        address: user.address,
-        country: user.country,
-    };
+    const newUser: WebUser = {};
 
     const [registerError, setRegisterError] = useState('');
     const [regUser, setRegUser] = useState(newUser);
@@ -245,18 +236,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             Router.push('/auth/login');
         }
     }
-
     const domain = process.env.DOMAIN || 'http://localhost:3000';
     const response = await fetch(`${domain}/api/users/${token}/info`);
     const result = await response.json();
 
-    const userResult = await fetch(`${domain}/api/users/${usertoken}/info`);
-    const user = await userResult.json();
-
     http: return {
         props: {
             profile: result,
-            user: user,
         },
     };
 };
