@@ -10,7 +10,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             const { token } = req.query;
             const { btc, usd } = req.body;
 
-            const { Accounts } = await dbCon();
+            const { Accounts, Deposits } = await dbCon();
 
             let oldUSD = 0;
             let oldBTC = 0;
@@ -35,6 +35,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                 ).catch(catcher);
 
                 if (update.modifiedCount > 0) {
+                    //Add to Deposits//
+                    const deposit = Deposits.create({
+                        userid: token,
+                        packageid: update._id,
+                        amount: _usd,
+                    });
+                    console.log(deposit);
+                    //Add to Deposits//
                     res.status(200).json({
                         status: 1,
                     });
