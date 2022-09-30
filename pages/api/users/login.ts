@@ -14,7 +14,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             const { email, password } = req.body;
             const { Accounts } = await dbCon();
             const account = await Accounts.findOne({ email: email }).catch(catcher);
-            console.log(account);
             if (!account) {
                 res.status(404).json({ status: 0, err: 'Account not found' });
             } else {

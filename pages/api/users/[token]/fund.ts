@@ -26,7 +26,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                 const _usd = oldUSD + newUSD;
                 const _btc = oldBTC + newBTC;
 
-                const update: any = await Accounts.updateOne(
+                const update: any = await Accounts.findOneAndUpdate(
                     { _id: token },
                     {
                         usd: _usd,
