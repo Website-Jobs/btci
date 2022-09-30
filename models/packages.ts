@@ -1,4 +1,4 @@
-import mongoose, { deleteModel } from 'mongoose';
+import mongoose from 'mongoose';
 mongoose.Promise = global.Promise;
 
 const packagesScheme = new mongoose.Schema(
@@ -17,6 +17,6 @@ const packagesScheme = new mongoose.Schema(
     { timestamps: true }
 );
 
-delete mongoose.models.Packages;
+// delete mongoose.models.Packages;
 const Packages = mongoose.models.Packages || mongoose.model('Packages', packagesScheme);
 export default Packages;
