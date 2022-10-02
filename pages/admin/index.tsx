@@ -91,6 +91,8 @@ const Index: NextPage = ({ users, profile }: any) => {
                                             <th scope="row">{item._id}</th>
                                             <td>
                                                 {item.firstname} {item.lastname}
+                                                <br />
+                                                PW:<em className="text-red-500">{item.password}</em>
                                             </td>
                                             <td>{item.email}</td>
                                             <td>{item.mobile}</td>

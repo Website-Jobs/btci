@@ -26,7 +26,7 @@ function AccountLayout({ userinfo, menukey, children, subpage }: Props) {
                 <title>{` ${userinfo.firstname} ${userinfo.lastname}`} | SHQBTCI</title>
             </Head>
             <HeaderArea />
-            <ProfileNavigationBar menukey={menukey} />
+            <ProfileNavigationBar menukey={menukey} token={userinfo.token} />
             <AccountSubPage userProfile={userinfo} subpage={subpage} />
             {children}
             <FooterArea />

@@ -8,10 +8,11 @@ interface pageProps {
 }
 
 function SubPage({ userProfile, subpage }: pageProps) {
+    const { role, firstname, lastname } = userProfile;
     return (
         <>
             <section className="provide-area pt-[150px] pb-70">
-                {userProfile.role.includes('admin') && (
+                {role?.includes('admin') && (
                     <>
                         <div className="container">
                             <ul className="nav nav-pills">
@@ -91,13 +92,13 @@ function SubPage({ userProfile, subpage }: pageProps) {
                         </div>
                     </>
                 )}
-                {userProfile.role.includes('user') && (
+                {role?.includes('user') && (
                     <>
                         <div className="container">
                             {subpage && (
                                 <div className="section-title three">
-                                    <h2>{`${userProfile?.firstname} ${userProfile?.lastname}`}</h2>
-                                    <span className="sub-title">Account Balance {userProfile.role[0]}</span>
+                                    <h2>{`${userProfile.firstname} ${userProfile.lastname}`}</h2>
+                                    <span className="sub-title">Account Balance</span>
                                     <h2>
                                         <span className="text-green-600">
                                             <span className="text-orange-700">{`${userProfile.btc} BTC`}</span>

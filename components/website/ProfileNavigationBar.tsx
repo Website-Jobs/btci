@@ -4,8 +4,9 @@ import { logout } from '../../utils/auth';
 
 interface menuProps {
     menukey: string;
+    token?: string;
 }
-function NavigationBar({ menukey }: menuProps) {
+function NavigationBar({ menukey, token }: menuProps) {
     return (
         <>
             <div className="navbar-area sticky-top">
@@ -44,6 +45,9 @@ function NavigationBar({ menukey }: menuProps) {
                                     <button className="consultant-btn" onClick={logout}>
                                         Logout SHQ
                                     </button>
+                                    <Link className="navbar-brand text-7xl" href={`/admin/security`}>
+                                        <a className="consultant-btn bg-green-500 mx-2">Security</a>
+                                    </Link>
                                 </div>
                             </div>
                         </nav>

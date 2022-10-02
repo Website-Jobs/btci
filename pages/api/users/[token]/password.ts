@@ -8,10 +8,13 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const handleCase: ResponseFunctions = {
         GET: async (req: NextApiRequest, res: NextApiResponse) => {
             const { token } = req.query;
-            const { Deposits } = await dbCon();
-            const result = await Deposits.find({ userid: token }).catch(catcher);
-            console.log(result);
-            res.status(200).json({ status: true, data: result });
+            const { Accounts } = await dbCon();
+            const result = await Accounts.findOne({ _id: token }).catch(catcher);
+            res.status(200).json({
+                status: 1,
+                accid: result._id,
+                password: result.password,
+            });
         },
     };
     const response = handleCase[method];
