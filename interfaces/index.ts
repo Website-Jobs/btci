@@ -33,7 +33,7 @@ export interface WebUser {
     address?: string;
     country?: string;
     password?: string;
-    usd?: Number;
+    usd?: number;
     btc?: string;
 }
 
@@ -48,7 +48,7 @@ export interface SLoggedInUser {
     email?: string;
     firstname?: string;
     lastname?: string;
-    usd?: Number;
+    usd?: number;
     btc?: string;
 }
 
@@ -60,7 +60,7 @@ export interface ApiUser {
     firstname?: string;
     lastname?: string;
     role?: Array<string>;
-    usd?: Number;
+    usd?: number;
     btc?: string;
     lastseen?: Date;
 }
@@ -70,7 +70,7 @@ export interface ILoggedInUser {
     email?: string;
     firstname?: string;
     lastname?: string;
-    usd?: Number;
+    usd?: number;
     btc?: string;
 }
 
@@ -79,7 +79,7 @@ export interface LoggedInUser {
     email?: string;
     firstname?: string;
     lastname?: string;
-    usd?: Number;
+    usd?: number;
     btc?: string;
     lastseen?: Date;
 }
@@ -98,11 +98,11 @@ export interface IAccounts extends Document {
     firstname: string;
     lastname: string;
     location: {
-        address: String;
-        city: String;
-        state: String;
-        country: String;
-        zipcode: String;
+        address: string;
+        city: string;
+        state: string;
+        country: string;
+        zipcode: string;
     };
     lastseen: Date;
 }
