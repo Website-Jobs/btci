@@ -7,10 +7,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const catcher = (error: Error) => res.status(400).json({ status: 0, error: error });
     const handleCase: ResponseFunctions = {
         POST: async (req: NextApiRequest, res: NextApiResponse) => {
+            //
             const { token } = req.query;
             const { btc, usd } = req.body;
 
-            const { Accounts } = await dbCon();
+            const { Accounts, Deposits } = await dbCon();
 
             let oldUSD = 0;
             let oldBTC = 0;
@@ -21,8 +22,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             const user: any = await Accounts.findOne({ _id: token }).catch(catcher);
 
             if (user) {
+                //
                 oldUSD = parseFloat(user.usd);
                 oldBTC = parseFloat(user.btc);
+
                 const _usd = oldUSD + newUSD;
                 const _btc = oldBTC + newBTC;
 
@@ -31,15 +34,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                     {
                         usd: _usd,
                         btc: _btc,
-                        $push: {
-                            deposits: {
-                                amount: _usd,
-                            },
-                        },
                     }
                 ).catch(catcher);
 
                 if (update.modifiedCount > 0) {
+                    const dep = Deposits.create({
+                        userid: token,
+                        amount: _usd,
+                    });
                     res.status(200).json({
                         status: 1,
                     });

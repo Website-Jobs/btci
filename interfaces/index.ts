@@ -53,14 +53,15 @@ export interface SLoggedInUser {
 }
 
 export interface ApiUser {
-    status: boolean;
-    token: string;
-    email: string;
-    firstname: string;
-    lastname: string;
-    role: Array<string>;
-    usd: Number;
-    btc: string;
+    status?: boolean;
+    accid?: string;
+    token?: string;
+    email?: string;
+    firstname?: string;
+    lastname?: string;
+    role?: Array<string>;
+    usd?: Number;
+    btc?: string;
     lastseen?: Date;
 }
 

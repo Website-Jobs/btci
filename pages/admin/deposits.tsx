@@ -7,7 +7,7 @@ import Link from 'next/link';
 const $ = require('jquery');
 $.DataTable = require('datatables.net');
 
-const Investments: NextPage = ({ token, result, profile }: any) => {
+const Investments: NextPage = ({ token, deposits, profile }: any) => {
     const tableRef = useRef<HTMLTableElement | null>(null);
     return (
         <>
@@ -28,7 +28,7 @@ const Investments: NextPage = ({ token, result, profile }: any) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {result.map((item: any, i: any) => (
+                                {deposits.map((item: any, i: any) => (
                                     <>
                                         <tr>
                                             <th scope="row">{item._id}</th>
@@ -56,7 +56,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         }
     }
     // const investments;
-    const deposits = await fetch(`${process.env.DOMAIN}/api/deposits/${token}/list`);
+    const deposits = await fetch(`${process.env.DOMAIN}/api/deposits`);
     const depositsList = await deposits.json();
 
     const response = await fetch(`${process.env.DOMAIN}/api/users/${token}/info`);
@@ -65,7 +65,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     http: return {
         props: {
             token: token,
-            result: depositsList.data,
+            deposits: depositsList.data,
             profile: userInfo,
         },
     };
