@@ -3,7 +3,7 @@ import { ApiUser, LoggedInUser, TUser } from '../../interfaces';
 let money = require('currency-formatter');
 
 interface pageProps {
-    userProfile: ApiUser;
+    userProfile?: ApiUser | any;
     subpage?: boolean;
 }
 
@@ -96,7 +96,7 @@ function SubPage({ userProfile, subpage }: pageProps) {
                         <div className="container">
                             {subpage && (
                                 <div className="section-title three">
-                                    <h2>{`${userProfile?.firstname} ${userProfile?.lastname}`}</h2>
+                                    <h2>{`${userProfile.firstname} ${userProfile.lastname}`}</h2>
                                     <span className="sub-title">Account Balance {userProfile.role[0]}</span>
                                     <h2>
                                         <span className="text-green-600">
