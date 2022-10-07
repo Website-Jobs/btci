@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { dbCon } from '../../../../models';
 import { ResponseFunctions } from '../../../../interfaces';
+import { exit } from 'process';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const method: keyof ResponseFunctions = req.method as keyof ResponseFunctions;
@@ -9,7 +10,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         POST: async (req: NextApiRequest, res: NextApiResponse) => {
             //
             const { token } = req.query;
-            const { btc, usd } = req.body;
+            const { btc, usd, action } = req.body;
 
             const { Accounts, Deposits } = await dbCon();
 
@@ -26,8 +27,16 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                 oldUSD = parseFloat(user.usd);
                 oldBTC = parseFloat(user.btc);
 
-                const _usd = oldUSD + newUSD;
-                const _btc = oldBTC + newBTC;
+                let _usd = 0;
+                let _btc = 0;
+
+                if (action == 'credit') {
+                    _usd = oldUSD + newUSD;
+                    _btc = oldBTC + newBTC;
+                } else if (action == 'debit') {
+                    _usd = oldUSD - newUSD;
+                    _btc = oldBTC - newBTC;
+                }
 
                 const update: any = await Accounts.updateOne(
                     { _id: token },
