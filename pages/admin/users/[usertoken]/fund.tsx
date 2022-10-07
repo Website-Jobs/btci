@@ -14,6 +14,7 @@ const Index: NextPage = ({ token, user, profile, usdRate }: any) => {
     const newFund: any = {
         btc: 0,
         usd: 0,
+        action: 'credit',
     };
 
     const newEditor = {
@@ -90,6 +91,40 @@ const Index: NextPage = ({ token, user, profile, usdRate }: any) => {
                                         className="display w-full m-[20px] table table-responsive table-altered"
                                         width="100%"
                                     >
+                                        <tr>
+                                            <th scope="col">CREDIT or DEBIT?</th>
+                                            <td scope="col">
+                                                <div className="form-group mt-2">
+                                                    <label className="mx-2">
+                                                        <input
+                                                            type="radio"
+                                                            name="creditordebit"
+                                                            id="creditordebit"
+                                                            required={true}
+                                                            value="credit"
+                                                            onChange={(e) =>
+                                                                setFund({ ...fund, action: e.target.value })
+                                                            }
+                                                        />{' '}
+                                                        Credit
+                                                    </label>
+                                                    <label className="mx-2">
+                                                        <input
+                                                            type="radio"
+                                                            name="creditordebit"
+                                                            id="creditordebit"
+                                                            required={true}
+                                                            value="debit"
+                                                            onChange={(e) =>
+                                                                setFund({ ...fund, action: e.target.value })
+                                                            }
+                                                        />{' '}
+                                                        Debit
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+
                                         <tr>
                                             <th scope="col">USDT ($USD)</th>
                                             <td scope="col">
